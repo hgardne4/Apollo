@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name"viewport" content="width=device-width, initial-scale=1.0">
+	<title>Apollo</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+	<section class="sub-header">
+		<nav>
+			<a href="apollo.html"><img src="images/logo.png" width="100" heigth="40"></a>
+			<div class="nav-links" id="navLinks">
+			<i class="fa fa-times" onclick="hideMenu()"></i>
+
+				<ul>
+					<li><a href="apollo.html">HOME</a></li>
+					<li><a href="bands.html">BANDS</a></li>
+					<li><a href="popular-songs.html">POPULAR SONGS</a></li>
+					<li><a href="genres.html">GENRES</a></li>
+					<li><a href="blog.html">BLOG</a></li>
+				</ul>
+			</div>
+			<i class="fa fa-bars" onclick="showMenu()"></i>
+		</nav>
+		<h1>Blog</h1>	
+	</section>
+	
+
+<!Blog page content!>
+
+<section class="blog-content">
+	<div class="row">
+		<div class="blog-left">
+			<img src="images/blog.jpeg">
+			<h2> Blog</h2>
+			<p> Some blog stuff.</p>
+			<br>
+			<p> More blog stuff.</p>
+			
+		<div class="comment-box">
+			<h3>Leave a comment</h3>
+			<form class="comment-form">
+				<input type="text" placeholder="Enter Name">
+				<input type="email" placeholder="Enter Email">
+				<textarea rows="5" placeholder="Your Comment">
+				</textarea>
+				<button type="submit" class="page-btn gold-btn">POST COMMENT</button>
+				
+			</form>
+		</div>
+			
+			
+		</div>
+		<div class="blog-right">
+			<h3>Blog Post Categories</h3>
+			<div>
+				<span>Song Appreciation </span>
+				<span>14 </span>
+			</div>
+			<div>
+				<span>Band Appreciation </span>
+				<span>12 </span>
+			</div>
+			<div>
+				<span>Comment </span>
+				<span>28 </span>
+			</div>
+			<div>
+				<span>Questions </span>
+				<span>21 </span>
+			</div>
+		</div>
+	</div>
+	
+</section>
+
+
+<section class="footer">
+	<h4>About Us</h4>
+	<p>Our website is a one stop shop for all music fans. Find new music, explore music from your favorite genres, explore new bands, and even connect with your favorite bands. Bands also have the ability to register themselves to promote new music, sell merch, and promote upcoming shows.</p>
+	
+</section>
+
+<!JavaScript code to toggle the menu back and forth for smaller screens!>	
+<script>
+
+	var navLinks = document.getElementById("navLinks")
+	
+	function showMenu(){
+		navLinks.style.right = "0";
+	}
+	
+	function hideMenu(){
+		navLinks.style.right = "-200px";
+	}
+	
+</script>
+	
+</body>
+</html>

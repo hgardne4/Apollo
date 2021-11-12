@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name"viewport" content="width=device-width, initial-scale=1.0">
+	<title>Apollo</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+	<section class="header">
+		<nav>
+			<a href="apollo.html"><img src="images/logo.png" width="100" heigth="40"></a>
+			<div class="nav-links" id="navLinks">
+			<i class="fa fa-times" onclick="hideMenu()"></i>
+
+				<ul>
+					<li><a href="apollo.html">HOME</a></li>
+					<li><a href="bands.html">BANDS</a></li>
+					<li><a href="popular-songs.html">POPULAR SONGS</a></li>
+					<li><a href="genres.html">GENRES</a></li>
+					<li><a href="blog.html">BLOG</a></li>
+				</ul>
+			</div>
+			<i class="fa fa-bars" onclick="showMenu()"></i>
+		</nav>
+		
+<div class="text-box">
+	<h1>Music Exploration Hub</h1>
+	<p>Find amazing new music, connect to a live chat with other users and band members, purchase merchandise and concert tickets, live musically.
+	</p>
+	<a href="" class="page-btn">Visit to explore the world of music</a>
+</div>
+	
+	</section>
+	
+	
+<!Bands!>
+<section class="bands">
+	<h1>View Bands</h1>
+	<p>Check out popular bands.</p>
+	
+	<div class="row">
+		<div class="bands-col">
+			<h3>Angel Du$t</h3>
+			<p>Here is the band info for the band Angel Du$t</p>
+		</div>
+		<div class="bands-col">
+			<h3>Pinkshift</h3>
+			<p>Here is the band info for the band Pinkshift</p>
+		</div>
+		<div class="bands-col">
+			<h3>Eyedress</h3>
+			<p>Here is the band info for the band Eyedress</p>
+		</div>
+	</div>
+	
+	
+</section>
+	
+	
+<!statement!>
+
+<section class="statement">
+	<h1>Our Mission Statement</h1>
+	<p>Our love of music inspired us to create a platform designed for music explorers. With our website, you have all the tools you need to find new music and connect with the bands that you love.<br> Below you will find the website developers.</p>
+	
+	
+	<div class="row">
+	<div class="statement-col">
+			<img src="images/Miller.jpg" height="250">
+			<div class="layer">
+				<h3>Miller</h3>
+					<h4>The Brains</h4>
+			</div>
+		</div>
+		<div class="statement-col">
+			<img src="images/Henry.png" height="250">
+			<div class="layer">
+				<h3>Henry</h3>
+					<h4>The Brawn</h4>
+			</div>
+		</div>
+		<div class="statement-col">
+			<img src="images/George.jpg" height="250">
+			<div class="layer">
+				<h3>George</h3>
+					<h4>The Beauty</h4>
+			</div>
+		</div>
+	</div>
+
+</section>
+<!footer!>
+
+<section class="footer">
+	<h4>About Us</h4>
+	<p>Our website is a one stop shop for all music fans. Find new music, explore music from your favorite genres, explore new bands, and even connect with your favorite bands. Bands also have the ability to register themselves to promote new music, sell merch, and promote upcoming shows.</p>
+	
+</section>
+	
+<!JavaScript code to toggle the menu back and forth for smaller screens!>	
+<script>
+
+	var navLinks = document.getElementById("navLinks")
+	
+	function showMenu(){
+		navLinks.style.right = "0";
+	}
+	
+	function hideMenu(){
+		navLinks.style.right = "-200px";
+	}
+	
+</script>
+	
+</body>
+</html>
