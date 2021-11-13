@@ -381,6 +381,49 @@ h3 {
 	box-sizing: border-box;
 }
 
+.login-content {
+	justify-content: center;
+	width: 80%;
+	margin: auto;
+	padding: 60px 0;
+}
+
+.login-box {
+	align-items: center;
+	border: 1px solid #ccc;
+	margin: 50px 0;
+	padding: 10px 20px;
+}
+
+.login-box h3 {
+	text-align: center;
+}
+
+.login-form input, .login-form textarea {
+	text-align: center;
+	width: 50%;
+	padding: 10px;
+	margin: 15px 0;
+	box-sizing: border-box;
+	border: none;
+	outline: none;
+	background: #f0f0f0;
+}
+
+.login-form button {
+	margin: 10px 0;
+}
+
+.login-left {
+	/*margin-left: 300px;*/
+	flex-basis: 50%;
+}
+
+.login-right {
+	/*margin-left: 600px;*/
+	flex-basis: 50%;
+}
+
 .comment-box {
 	border: 1px solid #ccc;
 	margin: 50px 0;
