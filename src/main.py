@@ -11,15 +11,15 @@ https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-yo
 """
 
 # basic imports needed for flask, initializing the SQL DB, etc
-from flask import Blueprint
+from flask import Blueprint, render_template
 from . import db
 
 main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return 'Index'
+    return render_template('apollo.html')
 
 @main.route('/profile')
 def profile():
-    return 'Profile'
+    return render_template('profile.html')
