@@ -52,9 +52,10 @@ def signup_post():
 
 @auth.route('/login', methods=['POST'])
 def login_post():
-	# get the email and password from the user input
+	# get the email, password, and name from the user input
     email = request.form.get('email')
     password = request.form.get('password')
+    name = request.form.get('name')
 
     # get the user data from the database
     user = User.query.filter_by(email=email).first()
