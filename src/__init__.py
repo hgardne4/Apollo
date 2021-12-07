@@ -11,15 +11,18 @@ https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-yo
 """
 
 # basic imports needed for flask, initializing the SQL DB, etc
-from flask import Flask
+from flask import Flask, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+
+
+
 
 # initialize our database and pass this to the other files
 db = SQLAlchemy()
 
 def create_app():
-	# initialize our flask app
+    # initialize our flask app
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
@@ -48,3 +51,5 @@ def create_app():
 
     # return our flask app
     return app
+
+# create_app()

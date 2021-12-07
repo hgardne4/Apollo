@@ -23,3 +23,24 @@ def index():
 @main.route('/profile')
 def profile():
     return render_template('profile.html')
+
+
+@main.route('/genres')
+def genres():
+    return render_template('genres.html')
+
+@main.route('/popular-songs')
+def popular():
+    return render_template('popular-songs.html')
+
+@main.route('/bands')
+def bands():
+    return render_template('bands.html')
+
+@main.route('/login')
+def login():
+    return render_template('login.html')
+
+@main.route('/blog')
+def blog():
+    return render_template('blog.html')
