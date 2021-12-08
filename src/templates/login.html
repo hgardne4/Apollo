@@ -7,41 +7,9 @@ Apollo Music Platform
 This file is the user login page for the Apollo Music Platform, it handles the redirecting and basic initializations. 
 -->
 
+{% extends "header.html" %}
 
-<!DOCTYPE html>
-<html>
-
-<head>
-	<meta name"viewport" content="width=device-width, initial-scale=1.0">
-	<title>Apollo User Login</title>
-	<link rel="stylesheet" href="style.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet"> 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-<body>
-
-	<section class="sub-header">
-		<nav>
-			<a href="apollo.html"><img src="images/logo.png" width="100" heigth="40"></a>
-			<div class="nav-links" id="navLinks">
-			<i class="fa fa-times" onclick="hideMenu()"></i>
-
-				<ul>
-					<li><a href="apollo.html">HOME</a></li>
-					<li><a href="bands.html">BANDS</a></li>
-					<li><a href="popular-songs.html">POPULAR SONGS</a></li>
-					<li><a href="genres.html">GENRES</a></li>
-					<li><a href="blog.html">BLOG</a></li>
-				</ul>
-			</div>
-			<i class="fa fa-bars" onclick="showMenu()"></i>
-		</nav>
-		<h1>LOGIN</h1>	
-	</section>
-	
+{% block content %}	
 	
 	<!-- USER Login page content -->
 
@@ -49,23 +17,25 @@ This file is the user login page for the Apollo Music Platform, it handles the r
 		<div class="row">
 			<div class="login-left">
 				<div class="login-box">
-					<h3>User Login</h3>
-					<form class="login-form">
-						<h3>
-							<input type="email" placeholder="Email">
-							<input type="password" placeholder="Password">
-							<br>
-							<button type="submit" class="page-btn gold-btn">LOGIN</button>
-						</h3>
-						
-						
+					<form method="POST" action="/login">
+						<h3>User Login</h3>
+						<form class="login-form">
+							<h3>
+								<input type="email" name="email" placeholder="Email">
+								<br>
+								<input type="password" name="password" placeholder="Password">
+								<br>
+								<br>
+								<button type="submit" class="page-btn gold-btn">LOGIN</button>
+							</h3>
+						</form>
 					</form>
 				</div>		
 			</div>	
 		</div>
 		
 
-		<!-- BAND Login page content -->
+		<!-- BAND Login page content 
 
 		<div class="row">
 			<div class="login-right">
@@ -85,7 +55,7 @@ This file is the user login page for the Apollo Music Platform, it handles the r
 			</div>		
 		</div>
 		
-		<!-- Create an account -->
+		
 		<div class="row">
 			
 				<div class="login-box">
@@ -104,24 +74,7 @@ This file is the user login page for the Apollo Music Platform, it handles the r
 				</div>		
 
 		</div>
+		-->
 	</section>
 
-
-
-	<!-- JavaScript code to toggle the menu back and forth for smaller screens -->	
-	<script>
-
-		var navLinks = document.getElementById("navLinks")
-		
-		function showMenu(){
-			navLinks.style.right = "0";
-		}
-		
-		function hideMenu(){
-			navLinks.style.right = "-200px";
-		}
-		
-	</script>
-		
-</body>
-</html>
+{% endblock %}

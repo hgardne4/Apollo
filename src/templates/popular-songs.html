@@ -8,39 +8,9 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 -->
 
 
-<!DOCTYPE html>
-<html>
+{% extends "header.html" %}
 
-<head>
-	<meta name"viewport" content="width=device-width, initial-scale=1.0">
-	<title>Apollo</title>
-	<link rel="stylesheet" href="style.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet"> 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-<body>
-	<section class="sub-header">
-		<nav>
-			<a href="apollo.html"><img src="images/logo.png" width="100" heigth="40"></a>
-			<div class="nav-links" id="navLinks">
-			<i class="fa fa-times" onclick="hideMenu()"></i>
-
-				<ul>
-					<li><a href="apollo.html">HOME</a></li>
-					<li><a href="bands.html">BANDS</a></li>
-					<li><a href="popular-songs.html">POPULAR SONGS</a></li>
-					<li><a href="genres.html">GENRES</a></li>
-					<li><a href="blog.html">BLOG</a></li>
-				</ul>
-			</div>
-			<i class="fa fa-bars" onclick="showMenu()"></i>
-		</nav>
-		<h1>Popular Songs</h1>	
-	</section>
-	
+	{% block content %}
 
 	<!-- Band page content -->
 
@@ -53,7 +23,7 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 				<a href=""class="page-btn gold-btn">Explore the album</a>
 			</div>
 			<div class="band-col">
-				<img src="images/thenewabnormal.jpeg">
+				<img src="static/images/thenewabnormal.jpeg">
 			</div>
 		
 		</div>
@@ -64,7 +34,7 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 				<a href=""class="page-btn gold-btn">Explore the Album</a>
 			</div>
 			<div class="band-col">
-				<img src="images/saccharine.jpeg">
+				<img src="static/images/saccharine.jpeg">
 			</div>
 		
 		</div>
@@ -75,7 +45,7 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 				<a href=""class="page-btn gold-btn">Explore the Album</a>
 			</div>
 			<div class="band-col">
-				<img src="images/mmfood.jpeg">
+				<img src="static/images/mmfood.jpeg">
 			</div>
 		
 		</div>
@@ -86,7 +56,7 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 				<a href=""class="page-btn gold-btn">Explore the Album</a>
 			</div>
 			<div class="band-col">
-				<img src="images/lonerism.jpeg">
+				<img src="static/images/lonerism.jpeg">
 			</div>
 		
 		</div>
@@ -97,7 +67,7 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 				<a href=""class="page-btn gold-btn">Explore the Album</a>
 			</div>
 			<div class="band-col">
-				<img src="images/yak.jpeg">
+				<img src="static/images/yak.jpeg">
 			</div>
 		
 		</div>
@@ -112,20 +82,4 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 		
 	</section>
 
-	<!-- JavaScript code to toggle the menu back and forth for smaller screens -->	
-	<script>
-
-		var navLinks = document.getElementById("navLinks")
-		
-		function showMenu(){
-			navLinks.style.right = "0";
-		}
-		
-		function hideMenu(){
-			navLinks.style.right = "-200px";
-		}
-		
-	</script>
-		
-</body>
-</html>
+	{% endblock %}

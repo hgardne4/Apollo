@@ -22,7 +22,7 @@ auth = Blueprint('auth', __name__)
 # WHEN THE USER GOES TO THE LOGIN PAGE
 @auth.route('/login')
 def login():
-    return render_template('login-test.html')
+    return render_template('login.html')
 
 # WHEN THE USER GOES TO THE SIGNUP PAGE
 @auth.route('/signup')
@@ -34,6 +34,7 @@ def signup_post():
 	# get the email and password from the user input
 	email = request.form.get('email')
 	password = request.form.get('password')
+	name = request.form.get('name')
 
 	# attempt to grab the data provided in the database 
 	user = User.query.filter_by(email=email).first()
