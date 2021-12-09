@@ -1,13 +1,12 @@
 CHANGES TO DESIGN:
-- added a signup tab that directs to the signup page
-- one signup feature that can create a User or a Band
-- only ONE login page, it automatically should login based on email/password in either table
+- There is now 1 signup method:
+	- user enters account type and then it adds that into the USER TABLE
+- Began object orientation for band, album, merch, etc. 
+- Started band, merchendise table
 
 NEED TO DO:
-- make signup.html, login.html, profile.html look better
-- make profile.html show contents for user and/or band
-	- can make a band specific page as well (this was just an idea to start)
+- make profile, login, signup look prettier
+- ADD foreign keys to table to connect them
+- add/design more tables 
 
-Bugs:
-- login "logs in" based on the user primary key, if I pass a band account it will log in the user with the same band key
-	- fix with polymorphism: make the user the parent of either a fan/band
+EDITED 12/9 at 15:00 

@@ -14,7 +14,8 @@ https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-yo
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user
-from .models import User, Band
+# import all the object and table classes from the models file
+from .models import User, Band, Merchendise 
 from . import db
 
 auth = Blueprint('auth', __name__)
@@ -38,7 +39,7 @@ def signup_post():
 	account_type = request.form.get('account_type')
 
 	# check if the account that is signing up is a user or band and complete corresponding actions
-	if account_type.lower() == 'user':
+	if account_type.lower() == 'user' or account_type.lower() == 'band':
 		# attempt to grab the data provided in the database 
 		user = User.query.filter_by(email=email).first()
 		# if the data does exist (non-empty) then output to user that the email already exists
@@ -47,30 +48,16 @@ def signup_post():
 			return redirect(url_for('auth.signup'))
 
 		# if the email does not already exist, then create a new user 
-		new_user = User(name=name, email=email, password=generate_password_hash(password, method='sha256'), num_logins=0)
+		new_user = User(name=name, email=email, password=generate_password_hash(password, method='sha256'), account_type=account_type.lower(), num_logins=0)
 		
 		# add the new user to the database
 		db.session.add(new_user)
 		db.session.commit()
 		return redirect(url_for('auth.login'))
-	elif account_type.lower() == 'band':
-		# attempt to grab the data provided in the database 
-		band = Band.query.filter_by(email=email).first()
-		# if the data does exist (non-empty) then output to user that the email already exists
-		if band:
-			flash('Email already exists')
-			return redirect(url_for('auth.signup'))
-
-		# if the email does not already exist, then create a new user 
-		new_band = Band(name=name, email=email, password=generate_password_hash(password, method='sha256'), num_logins=0)
-		
-		# add the new user to the database
-		db.session.add(new_band)
-		db.session.commit()
-		return redirect(url_for('auth.login'))
 	else:
 		flash('Unrecognized account type')
 		return redirect(url_for('auth.signup'))
+
 
 @auth.route('/login', methods=['POST'])
 def login_post():
@@ -80,17 +67,15 @@ def login_post():
 
     # get the user/band data from the database
     user = User.query.filter_by(email=email).first()
-    band = Band.query.filter_by(email=email).first()
 
+    # check if this is a user and the password matches, if so log them in
     if user and check_password_hash(user.password, password):
     	user.num_logins += 1
     	db.session.commit()
     	login_user(user)
-    elif band and check_password_hash(band.password, password):
-    	band.num_logins += 1
-    	db.session.commit()
-    	login_user(band)
+ 	# o/w output error and redirect to login page
     else:
     	flash('Unrecognized account details, please check your login details and try again.')
     	return redirect(url_for('auth.login'))
+    # if successfully logged in, then redirect to profile page
     return redirect(url_for('main.profile'))

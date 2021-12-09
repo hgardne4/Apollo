@@ -16,35 +16,45 @@ from . import db
 
 """
 OBJECTS THAT REFERENCE THE TABLES IN THE DATABASE:
-
-Current Tables:
-    - User login
-    - Band login
-    - Merch
 """
 
 # USER TABLE
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
+
 	# initialize the primary key in the SQL Database to be the id
     id = db.Column(db.Integer, primary_key=True)
-    # store the email, password, and names as columns with string contents
+    # USER CONTENTES STORES:
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     name = db.Column(db.String(100))
+    account_type = db.Column(db.String(100))
     num_logins = db.Column(db.Integer)
 
 
 # BAND TABLE
-class Band(UserMixin, db.Model):
+class Band(db.Model):
     __tablename__ = 'band'
+
     # initialize the primary key in the SQL Database to be the id
     id = db.Column(db.Integer, primary_key=True)
-    # store the email, password, and names as columns with string contents
-    email = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(100))
+    #account_id = db.Column(db.Integer, db.ForeignKey='user.id')
+    #account = relationship('Parent', back_populates='children')
+
+    # Band CONTENTS STORED
     name = db.Column(db.String(100))
-    num_logins = db.Column(db.Integer)
+    genre = db.Column(db.String(100))
+    page_views = db.Column(db.Integer)
 
+# MERCHENDISE TABLE
+class Merchendise(db.Model):
+    __tablename__ = 'merchendise'
 
-
+    # initialize the primary key in the SQL Database to be the id
+    id = db.Column(db.Integer, primary_key=True)
+    #band_id = db.Column(db.Integer, ForeignKey='band.id')
+    #band = relationship('Parent', back_populates='children')
+    # MERCHENDISE CONTENTS STORED:
+    item_name = db.Column(db.String(100))
+    price = db.Column(db.Integer)
+    quantity = db.Column(db.Integer)

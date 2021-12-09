@@ -27,7 +27,6 @@ def create_app():
 
     db.init_app(app)
 
-
     # blueprint for auth routes in our app
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
@@ -42,13 +41,11 @@ def create_app():
     login_manager.init_app(app)
 
     # load our user/band
-    from .models import User, Band
+    from .models import User
     @login_manager.user_loader
     def load_user(id):
         if User.query.get(int(id)):
             return User.query.get(int(id))
-        elif Band.query.get(int(id)):
-            return Band.query.get(int(id))
 
     # APPEND ALL THE TABLES WITH THE CREATE_ALL() FUNCTION:
     # NOTE: need to wrap in the app_context() and commit changes
