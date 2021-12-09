@@ -24,7 +24,6 @@ def index():
 def profile():
     return render_template('profile.html')
 
-
 @main.route('/genres')
 def genres():
     return render_template('genres.html')
@@ -40,6 +39,10 @@ def bands():
 @main.route('/login')
 def login():
     return render_template('login.html')
+
+@main.route('/signup')
+def signup():
+    return render_template('signup.html')
 
 @main.route('/blog')
 def blog():

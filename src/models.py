@@ -23,24 +23,28 @@ Current Tables:
     - Merch
 """
 
-# the User is an object that is used for the standard user login
+# USER TABLE
 class User(UserMixin, db.Model):
+    __tablename__ = 'user'
 	# initialize the primary key in the SQL Database to be the id
     id = db.Column(db.Integer, primary_key=True)
     # store the email, password, and names as columns with string contents
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
-    name = db.Column(db.String(1000))
+    name = db.Column(db.String(100))
+    num_logins = db.Column(db.Integer)
 
 
-# the Band class is an object used for Band logins
+# BAND TABLE
 class Band(UserMixin, db.Model):
+    __tablename__ = 'band'
     # initialize the primary key in the SQL Database to be the id
     id = db.Column(db.Integer, primary_key=True)
     # store the email, password, and names as columns with string contents
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
-    name = db.Column(db.String(1000))
+    name = db.Column(db.String(100))
+    num_logins = db.Column(db.Integer)
 
 
 

@@ -15,9 +15,6 @@ from flask import Flask, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
-
-
-
 # initialize our database and pass this to the other files
 db = SQLAlchemy()
 
@@ -29,6 +26,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
     db.init_app(app)
+
 
     # blueprint for auth routes in our app
     from .auth import auth as auth_blueprint
@@ -43,13 +41,20 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    # load our user
-    from .models import User
+    # load our user/band
+    from .models import User, Band
     @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(int(user_id))
+    def load_user(id):
+        if User.query.get(int(id)):
+            return User.query.get(int(id))
+        elif Band.query.get(int(id)):
+            return Band.query.get(int(id))
 
+    # APPEND ALL THE TABLES WITH THE CREATE_ALL() FUNCTION:
+    # NOTE: need to wrap in the app_context() and commit changes
+    with app.app_context():
+        db.create_all()
+        db.session.commit()
+    
     # return our flask app
     return app
-
-# create_app()
