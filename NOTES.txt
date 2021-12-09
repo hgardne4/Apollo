@@ -1,0 +1,13 @@
+CHANGES TO DESIGN:
+- added a signup tab that directs to the signup page
+- one signup feature that can create a User or a Band
+- only ONE login page, it automatically should login based on email/password in either table
+
+NEED TO DO:
+- make signup.html, login.html, profile.html look better
+- make profile.html show contents for user and/or band
+	- can make a band specific page as well (this was just an idea to start)
+
+Bugs:
+- login "logs in" based on the user primary key, if I pass a band account it will log in the user with the same band key
+	- fix with polymorphism: make the user the parent of either a fan/band
