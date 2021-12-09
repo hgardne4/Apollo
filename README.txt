@@ -6,10 +6,12 @@ Prof. Zhupa
 Apollo Music Platform
 
 Folders:
+    venv                 -> virtual enviornment  
+    __pychache__         -> "compiled" python files
     src                  -> the main directory containing all of the source code
-    src/Front_end        -> folder containing the visuals and client-side files
-    src/Front_end/images -> folder containing all the images and visuals used in the displays
-    src/Back_end         -> folder containing the server-side files
+    src/static/*         -> folder containing the visuals used in display
+    src/templates        -> folder containing all the client-side files
+
 
 
 How to run:
@@ -22,9 +24,13 @@ Then we need to activate the virtual enviornment via:
 
 	. venv/bin/activate
 
-Lastly we need to initialize flask to our python file through the following command:
+Before we continue, make sure to install flask (and corresponding elements of flask) in this folder, complete this with the following command:
+	
+        pip3 install flask flask-sqlalchemy flask-login
 
-	export FLASK_APP=__init__.py
+Lastly, we need to initialize flask to our python file through the following command:
+
+	export FLASK_APP=src
 
 Now we can run the program by executing:
 
