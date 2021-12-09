@@ -28,18 +28,20 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     name = db.Column(db.String(100))
-    account_type = db.Column(db.String(100))
+    #account_type = db.Column(db.String(100))
     num_logins = db.Column(db.Integer)
 
 
 # BAND TABLE
-class Band(db.Model):
+class Band(UserMixin, db.Model):
     __tablename__ = 'band'
 
     # initialize the primary key in the SQL Database to be the id
     id = db.Column(db.Integer, primary_key=True)
     #account_id = db.Column(db.Integer, db.ForeignKey='user.id')
     #account = relationship('Parent', back_populates='children')
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(100))
 
     # Band CONTENTS STORED
     name = db.Column(db.String(100))

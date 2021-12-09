@@ -17,9 +17,23 @@ This file is the user login page for the Apollo Music Platform, it handles the r
 		<div class="row">
 			<div align="center">
 				<div class="login-box">
-					<form method="POST" action="/login">
+					<!-- <form method="POST" action="/login"> -->
+					<form method="POST">
 						<h3>User Login</h3>
-						<form class="login-form">
+
+							<fieldset class="form-field">
+								{{ form.email.label }}
+								{{ form.email(size=50) }}
+							</fieldset>
+					
+							<fieldset class="form-field">
+								{{ form.password.label }}
+								{{ form.password(size=50) }}
+							</fieldset>
+							{{ form.csrf_token }}
+							{{ form.submit() }}
+
+						<!--<form class="login-form">
 							<h3>
 								<input type="email" name="email" placeholder="Email">
 								<br>
@@ -28,7 +42,7 @@ This file is the user login page for the Apollo Music Platform, it handles the r
 								<br>
 								<button type="submit" class="page-btn gold-btn">LOGIN</button>
 							</h3>
-						</form>
+						</form> -->
 					</form>
 				</div>		
 			</div>	
@@ -78,10 +92,12 @@ This file is the user login page for the Apollo Music Platform, it handles the r
 	</section>
 
 <!-- DISPLAY WHEN THE ACCOUNT DOESN'T EXIST -->
-{% with messages = get_flashed_messages() %}
+
+
+{% endblock %}
+
+<!-- {% with messages = get_flashed_messages() %}
     {% if messages %}
         <h3 style="color:red">{{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.</h3>
     {% endif %}
-{% endwith %}
-
-{% endblock %}
+{% endwith %} -->
