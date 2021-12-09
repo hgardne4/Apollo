@@ -1,11 +1,14 @@
 {% extends "header.html" %}
 	{% block title %} Apollo {% endblock %}
 
-{% block header %}
+{% block content %}
 <section>
 	{% if current_user.is_authenticated %}
 		<!-- GET THE EMAIL THROUGH THE CURRENT_USER CALL -->
-		<h1 class="title"> Welcome {{ current_user.email }} to your profile!</h1>
+		<h1 class="title"> Welcome {{ current_user.name }} to your profile!</h1>
+		<br><br><br><br><br><br>
+		<h2>Navigate the website in the tabs above.</h2>
+		<h3>Thank you for supporting the Apollo Music Platform!</h3>
 	{% endif %} 
 </section>
 {% endblock %}

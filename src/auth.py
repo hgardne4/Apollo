@@ -44,7 +44,7 @@ def signup_post():
 		return redirect(url_for('auth.signup'))
 
 	# if the email does not already exist, then create a new user 
-	new_user = User(email=email, password=generate_password_hash(password, method='sha256'))
+	new_user = User(name=name, email=email, password=generate_password_hash(password, method='sha256'))
 	
 	# add the new user to the database
 	db.session.add(new_user)
@@ -63,7 +63,7 @@ def login_post():
 
     # check if the user data exist, and that the password was entered correctly, if not, then output to user
     if not user or not check_password_hash(user.password, password):
-        flash('Please check your login details and try again.')
+        flash('Unrecognized account details, please check your login details and try again.')
         return redirect(url_for('auth.login')) 
     # assuming the data does exist, login the user and redirect
     login_user(user)
