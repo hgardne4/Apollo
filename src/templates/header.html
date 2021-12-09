@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <meta name"viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Apollo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -348,7 +348,7 @@ font-weight: 600;
 .sub-header {
 height: 50vh;
 width: 100%;
-background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(static/images/header.png);
+background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url("{{ url_for('static', filename='images/header.png') }}");
 background-position: center;
 background-size: cover;
 text-align: center;
