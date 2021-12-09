@@ -1,8 +1,11 @@
-{% extends "base.html" %}
+{% extends "header.html" %}
+	{% block title %} Apollo {% endblock %}
 
-{% block content %}
-{% if current_user.is_authenticated %}
-	<!-- GET THE EMAIL THROUGH THE CURRENT_USER CALL -->
-	<h1 class="title"> Welcome {{ current_user.email }} to your profile!</h1>
-{% endif %} 
+{% block header %}
+<section>
+	{% if current_user.is_authenticated %}
+		<!-- GET THE EMAIL THROUGH THE CURRENT_USER CALL -->
+		<h1 class="title"> Welcome {{ current_user.email }} to your profile!</h1>
+	{% endif %} 
+</section>
 {% endblock %}
