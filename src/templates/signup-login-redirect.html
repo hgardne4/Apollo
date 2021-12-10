@@ -21,19 +21,19 @@ This file is the user login page for the Apollo Music Platform, it handles the r
 						<a href="{{ url_for('auth.signup_user') }}">
 							<button>USER SIGNUP</button>
 						</a>
-						<a href="{{ url_for('auth.login_user') }}">
-							<button>USER LOGIN</button>
 						</a>
 						<a href="{{ url_for('auth.signup_band') }}">
 							<button>BAND SIGNUP</button>
 						</a>
-						<a href="{{ url_for('auth.login_band') }}">
-							<button>BAND LOGIN</button>
+						<a href="{{ url_for('auth.login') }}">
+							<button>LOGIN</button>
 						</a>
 				</div>		
 			</div>	
 		</div>
 		
+
+		<button type="submit" class="page-btn gold-btn">LOGIN</button>
 	</section>
 
 {% endblock %}

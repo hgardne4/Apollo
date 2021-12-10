@@ -36,17 +36,13 @@ def create_app():
     app.register_blueprint(main_blueprint)
 
     # initalize the login manager which helps connect to the flask-login
-    user_login_manager = LoginManager()
-    user_login_manager.login_view = 'auth.login'
-    user_login_manager.init_app(app)
-
-    band_login_manager = LoginManager()
-    band_login_manager.login_view = 'auth.login'
-    band_login_manager.init_app(app)
+    login_manager = LoginManager()
+    login_manager.login_view = 'auth.login'
+    login_manager.init_app(app)
 
     # load our user/band
     from .models import User
-    @user_login_manager.user_loader
+    @login_manager.user_loader
     def load_user(id):
         if User.query.get(int(id)):
             return User.query.get(int(id))
