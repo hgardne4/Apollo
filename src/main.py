@@ -19,7 +19,11 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 
+# imports used to gather important data locally used for displaying 
 from datetime import datetime
+import os
+from os import listdir
+from os.path import isfile, join
 
 main = Blueprint('main', __name__)
 
@@ -79,7 +83,10 @@ def popular():
 @main.route('/bands')
 def bands():
     all_bands = User.query.filter_by(account_type="band")
-    return render_template('bands.html', all_bands=all_bands, BandQ=Band)
+    # get all the images in the static/images folder, if the band has an image display it
+    return render_template('bands.html', all_bands=all_bands, BandQ=Band, 
+        top3_bands=db.session.query(User, Band).filter(User.id == Band.user_id).order_by(Band.page_views.desc()).limit(3),
+        image_files=[file.split('.')[0] for file in listdir(os.getcwd() + '/src/static/images') if isfile(join(os.getcwd() + '/src/static/images', file))])
 
 @main.route('/signup-login')
 def singup_login_redir():

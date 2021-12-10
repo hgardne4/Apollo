@@ -53,21 +53,23 @@ This file is the home page for the Apollo Music Platform, it handles the redirec
 
 	<!-- Bands -->
 	<section class="bands">
-		<h1>View Bands</h1>
-		<p>Check out popular bands.</p>
+		<h1>Find Some New Music</h1>
 		
 		<div class="row">
 			<div class="bands-col">
-				<h3>Angel Du$t</h3>
-				<p>Here is the band info for the band Angel Du$t</p>
+				<a href="{{ url_for('main.bands') }}">
+					<h3>View Bands</h3>
+				</a>
 			</div>
 			<div class="bands-col">
-				<h3>Pinkshift</h3>
-				<p>Here is the band info for the band Pinkshift</p>
+				<a href="{{ url_for('main.genres') }}">
+					<h3>View Genres</h3>
+				</a>
 			</div>
 			<div class="bands-col">
-				<h3>Eyedress</h3>
-				<p>Here is the band info for the band Eyedress</p>
+				<a href="{{ url_for('main.singup_login_redir') }}">
+					<h3>Create an Account</h3>
+				</a>
 			</div>
 		</div>
 		
