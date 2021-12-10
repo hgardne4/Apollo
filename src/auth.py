@@ -71,7 +71,7 @@ def signup_user():
 			flash('Email already exists')
 			return redirect(url_for('auth.signup_user'))
 
-		new_user = User(name=form.name.data, email=form.email.data, password=generate_password_hash(form.password.data, method='sha256'), account_type="user", num_logins=0)
+		new_user = User(name=form.name.data, email=form.email.data, password=generate_password_hash(form.password.data, method='sha256'), account_type="user", num_logins=0, num_posts=0)
 		db.session.add(new_user)
 		db.session.commit()
 		return redirect(url_for('auth.login'))
@@ -95,7 +95,7 @@ def signup_band():
 			return redirect(url_for('auth.signup_band'))
 
 		# UPDATE THE USER TABLE
-		new_user = User(name=form.name.data, email=form.email.data, password=generate_password_hash(form.password.data, method='sha256'), account_type="band", num_logins=0)
+		new_user = User(name=form.name.data, email=form.email.data, password=generate_password_hash(form.password.data, method='sha256'), account_type="band", num_logins=0, num_posts=0)
 		db.session.add(new_user)
 		db.session.commit()
 
@@ -132,61 +132,3 @@ def login():
 		return redirect(url_for('main.profile', uid=int(user.id), band=0))
 
 	return render_template('login.html', form=form)
-
-
-# @auth.route('/login/user', methods=['GET', 'POST'])
-# def login_user():
-# 	# get the email, password, and name from the user input
-
-# 	password = ''
-# 	email = ''
-# 	form = UserLoginForm(password='', email='')
-
-# 	if form.validate_on_submit():
-# 		# get the user/band data from the database
-# 		user = User.query.filter_by(email=form.email.data).first()
-
-# 		# check if this is a user and the password matches, if so log them in
-# 		if user and check_password_hash(user.password, str(form.password.data)):
-# 			user.num_logins += 1
-# 			db.session.commit()
-# 			#login_user(user)
-# 		# o/w output error and redirect to login page
-# 		else:
-# 			flash('Unrecognized account details, please check your login details and try again.')
-# 			return redirect(url_for('auth.login_user'))
-#     	# if successfully logged in, then redirect to profile page
-# 		id = int(user.id)
-# 		return redirect(url_for('main.profile', uid=id, band=0))
-
-# 	return render_template('login.html', form=form)
-
-
-# @auth.route('/login/band', methods=['GET', 'POST'])
-# def login_band():
-# 	# get the email, password, and name from the user input
-
-# 	password = ''
-# 	email = ' '
-# 	form = BandLoginForm(password='', email='')
-
-# 	if form.validate_on_submit():
-# 		# get the user/band data from the database
-# 		band = Band.query.filter_by(email=form.email.data).first()
-
-# 		# check if this is a user and the password matches, if so log them in
-# 		if band and check_password_hash(band.password, str(form.password.data)):
-# 			# user.num_logins += 1
-# 			# db.session.commit()
-# 			#login_user(user)
-# 			id = int(band.id)
-# 			return redirect(url_for('main.profile', uid=id, band=1))
-# 		# o/w output error and redirect to login page
-# 		else:
-# 			flash('Unrecognized account details, please check your login details and try again.')
-# 			return redirect(url_for('auth.login_band'))
-#     	# if successfully logged in, then redirect to profile page
-# 		id = int(band.id)
-# 		return redirect(url_for('main.profile', uid=id, band=1))
-
-# 	return render_template('login.html', form=form)

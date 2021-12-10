@@ -12,14 +12,39 @@ https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-yo
 
 # basic imports needed for flask, initializing the SQL DB, etc
 from flask import Blueprint, render_template, redirect, url_for, request, flash
-from .models import User, Band, Merchendise, Discography
+from .models import User, Band, Merchendise, Discography, Blog
 from . import db
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 
+from datetime import datetime
+
 main = Blueprint('main', __name__)
+
+# FUNCTION CLASSES:
+class SellMerchForm(FlaskForm):
+  item_name = StringField('Item Name: ', validators=[DataRequired()])
+  quantity = StringField('Quantity: ', validators=[DataRequired()])
+  submit = SubmitField('Submit')
+
+class AddMerchForm(FlaskForm):
+  item_name = StringField('Item Name: ', validators=[DataRequired()])
+  price = StringField('Price: ', validators=[DataRequired()])
+  quantity = StringField('Quantity: ', validators=[DataRequired()])
+  submit = SubmitField('Submit')
+
+class AddDiscogForm(FlaskForm):
+  album = StringField('Album: ', validators=[DataRequired()])
+  song = StringField('Song: ', validators=[DataRequired()])
+  submit = SubmitField('Submit')
+
+class AddBlogForm(FlaskForm):
+    email = StringField('Email: ', validators=[DataRequired()])
+    post = StringField('Post: ', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
 
 @main.route('/')
 def index():
@@ -51,18 +76,31 @@ def bands():
 def singup_login_redir():
     return render_template('signup-login-redirect.html')
 
-@main.route('/blog')
+@main.route('/blog', methods=['GET','POST'])
 def blog():
-    return render_template('blog.html')
+    # intialize the blog form
+    form = AddBlogForm(email='', post='')
+    if form.validate_on_submit():
+        # get the user for this email to add their id val to the blog table
+        user = User.query.filter_by(email=form.email.data).first()
+        print(user.num_posts)
+        # make sure there is a user associated with this account, if so make the post
+        if user:
+            # get the current date and time
+            now = datetime.now().strftime("%d/%m/%Y %H:%M:%S").split()
+            date = now[0]
+            time = now[1]
+            # create a new row in the blog table
+            blog_post = Blog(user_id=user.id, date=date, time=time, post=form.post.data)
+            # update the database
+            db.session.add(blog_post)
+            user.num_posts += 1
+            db.session.commit()
+            return redirect(url_for('main.blog'))
 
-class SellMerchForm(FlaskForm):
-  item_name = StringField('Item Name: ', validators=[DataRequired()])
-  quantity = StringField('Quantity: ', validators=[DataRequired()])
-  submit = SubmitField('Submit')
+    return render_template('blog.html', form=form)
 
-
-
-@main.route('/buy-merch/<int:uid>', methods=[ 'GET' , 'POST' ])
+@main.route('/buy-merch/<int:uid>', methods=['GET','POST'])
 def buy_merch(uid):
     all_merch = Merchendise.query.filter_by(user_id=uid)
 
@@ -74,24 +112,15 @@ def buy_merch(uid):
         merch = Merchendise.query.filter_by(user_id=uid, item_name=form.item_name.data).first()
 
         if merch:
-            
             merch.quantity = merch.quantity - int(form.quantity.data)
             db.session.commit()
             all_merch = Merchendise.query.filter_by(user_id=uid)
             #CHECK FOR LESS THAN 0
             return render_template('sell-merch.html',form=form, rows=all_merch, bid=uid)
-        else:
-            # MERCH DOES NOT EXIST
-            two = 2
+
     return render_template('sell-merch.html',form=form, rows=all_merch, bid=uid)
 
-class AddMerchForm(FlaskForm):
-  item_name = StringField('Item Name: ', validators=[DataRequired()])
-  price = StringField('Price: ', validators=[DataRequired()])
-  quantity = StringField('Quantity: ', validators=[DataRequired()])
-  submit = SubmitField('Submit')
-
-@main.route('/add-merch/<int:uid>', methods=[ 'GET' , 'POST' ])
+@main.route('/add-merch/<int:uid>', methods=['GET','POST'])
 def add_merch(uid):
     item_name = ' '
     price = ' '
@@ -112,26 +141,14 @@ def add_merch(uid):
         
         return redirect(url_for('main.profile', uid=uid, band=1))
 
-
     return render_template('add-merch.html', form=form) 
 
-class AddMerchForm(FlaskForm):
-  item_name = StringField('Item Name: ', validators=[DataRequired()])
-  price = StringField('Price: ', validators=[DataRequired()])
-  quantity = StringField('Quantity: ', validators=[DataRequired()])
-  submit = SubmitField('Submit')
-
-@main.route('/show_discog/<int:bid>', methods=[ 'GET' , 'POST' ])
+@main.route('/show_discog/<int:bid>', methods=['GET','POST'])
 def display_discog(bid):
     all_discography = Discography.query.filter_by(user_id=bid)
     return render_template('display-discography.html',rows=all_discography, bid=bid)
 
-class AddDiscogForm(FlaskForm):
-  album = StringField('Album: ', validators=[DataRequired()])
-  song = StringField('Song: ', validators=[DataRequired()])
-  submit = SubmitField('Submit')
-
-@main.route('/add-discog/<int:uid>', methods=[ 'GET' , 'POST' ])
+@main.route('/add-discog/<int:uid>', methods=['GET','POST'])
 def add_discog(uid):
     album = ' '
     song = ' '
@@ -149,7 +166,6 @@ def add_discog(uid):
             db.session.commit()
         
         return redirect(url_for('main.profile', uid=uid, band=1))
-
 
     return render_template('add-discography.html', form=form) 
 

@@ -9,7 +9,7 @@ This file is the blog page for the Apollo Music Platform, it handles the redirec
 
 
 {% extends "header.html" %}
-	{% block title %} Blog {% endblock %}
+	{% block title %} Apollo Blog {% endblock %}
 
 
 	{% block content %}
@@ -25,14 +25,18 @@ This file is the blog page for the Apollo Music Platform, it handles the redirec
 				<p> More blog stuff.</p>
 				
 			<div class="comment-box">
-				<h3>Leave a comment</h3>
-				<form class="comment-form">
-					<input type="text" placeholder="Enter Name">
-					<input type="email" placeholder="Enter Email">
-					<textarea rows="5" placeholder="Your Comment">
-					</textarea>
-					<button type="submit" class="page-btn gold-btn">POST COMMENT</button>
-					
+				<h3>Post a comment:</h3>
+				<form class="comment-form", method="POST">
+                    <div class="field">
+                        {{ form.email.label }}
+                        {{ form.email(size=30) }}
+                    </div>
+	                    <div class="field">
+	                        {{ form.post.label }}
+	                        {{ form.post(size=30) }}
+	                    </div>
+					{{ form.csrf_token }}
+					{{ form.submit() }}					
 				</form>
 			</div>
 				
