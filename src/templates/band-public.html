@@ -1,21 +1,31 @@
 {% extends "header.html" %}
-	{% block title %} Apollo {% endblock %}
+	{% block title %} Apollo Band Public Profile {% endblock %}
 
 {% block content %}
 <section>
 	{% if current_user.is_authenticated %}
 		<!-- GET THE EMAIL THROUGH THE CURRENT_USER CALL -->
-		<h1 class="title"> Welcome {{ disp_band.email }} to your profile!</h1>
+		<h1 class="title" style="text-align: center"> Welcome to {{ band_user.name }}'s Profile!</h1>
 
-		<a href="{{ url_for('main.buy_merch', uid=bid) }}">
-			<button>BUY MERCH</button>
-		</a>
-		<a href="{{ url_for('main.display_discog', bid=bid) }}">
-			<button>SEE DISCOGPRAHY</button>
-		</a>
-		<br><br><br><br><br><br>
-		<h2>Navigate the website in the tabs above.</h2>
+		{% if current_user.account_type == "band" %}
+			<br><br>
+			<h2 style="text-align: center">Genre: {{ band.genre }}</h2>
+			<br><br><br>
+				<div style="display: flex; justify-content: center; align-content: center;">			
+
+	                    <a href="{{ url_for('main.buy_merch', uid=bid) }}">
+							<button>BUY MERCH</button>
+						</a>
+						<a href="{{ url_for('main.display_discog', bid=bid) }}">
+							<button>SEE DISCOGPRAHY</button>
+						</a>						
+				</div>
+			<br><br><br>
+		{% endif %}
+		<h3>This page has been viewed {{ band.page_views }} times.</h3>
+		<br><br><br>
 		<h3>Thank you for supporting the Apollo Music Platform!</h3>
+		<h3>Navigate the website in the tabs above.</h3>
 	{% endif %} 
 </section>
 {% endblock %}

@@ -2,37 +2,33 @@
 
 {% block content %}
 <body style="background-color: #edfc47;">
-    <h1 style="color:#993657; text-align: center; font-family: 'Courier New', monospace;"> Edit Your User Info
-    </h1>
+    <h1 style="color:#993657; text-align: center; font-family: 'Courier New', monospace;"> View Discography!</h1>
 
-    {% with messages = get_flashed_messages() %}
+   {% with messages = get_flashed_messages() %}
 	  {% if messages %}
-	    {% for message in messages %}
-		  <div class="alert alert-warning alert-dismissible" role="alert">
-		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-			{{message}}
-		  </div>
-		{% endfor %}
+   	  {% for message in messages %}
+   		  <div class="alert alert-warning alert-dismissible" role="alert">
+      		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      			{{message}}
+   		  </div>
+   	  {% endfor %}
 	  {% endif %}
 	{% endwith %}
 
+   <br><br><br>
+   <table border=1 style="margin-left: auto; margin-right: auto; text-align: center;">
+       <thead>
+          <td>Album</td>
+          <td>Song</td>
 
-
-  <table border = 1>
-    <thead>
-       <td>Album</td>
-       <td>Song</td>
-
-    </thead>
-    
-    {% for row in rows %}
-       <tr>
-          <td>{{row["album"]}}</td>
-          <td>{{row["song"]}}</td>
-       </tr>
-    {% endfor %}
- </table>
-
-
+       </thead>
+       
+       {% for row in rows %}
+          <tr>
+             <td>{{row["album"]}}</td>
+             <td>{{row["song"]}}</td>
+          </tr>
+       {% endfor %}
+   </table>
 </body>
 {% endblock %}

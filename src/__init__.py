@@ -40,7 +40,8 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    # load our user/band
+    # NOTE:
+    # A User is either a fan OR a band
     from .models import User
     @login_manager.user_loader
     def load_user(id):

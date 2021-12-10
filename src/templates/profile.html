@@ -5,15 +5,22 @@
 <section>
 	{% if current_user.is_authenticated %}
 		<!-- GET THE EMAIL THROUGH THE CURRENT_USER CALL -->
-		<h1 class="title" style="text-align: center"> Welcome {{ current_user.name }} to your profile!</h1>
+		<h1 class="title" style="text-align: center"> Welcome to your profile {{ current_user.name }}!</h1>
 
 		{% if current_user.account_type == "band" %}
-			<a href="{{ url_for('main.add_discog', uid=current_user.id) }}">
-				<button>ADD DISCOGRAPHY</button>
-			</a>
-			<a href="{{ url_for('main.add_merch', uid=current_user.id) }}">
-				<button>ADD MERCH</button>
-			</a>
+			<br><br><br>
+				<div style="display: flex; justify-content: center; align-content: center;">			
+
+	                    <a href="{{ url_for('main.add_discog', uid=current_user.id) }}">
+							<button>ADD DISCOGRAPHY</button>
+						</a>
+						<a href="{{ url_for('main.add_merch', uid=current_user.id) }}">
+							<button>ADD MERCH</button>
+						</a>	
+
+						
+				</div>
+			<br><br><br>
 		{% endif %}
 		<h3>You have made {{ current_user.num_posts }} posts.</h3>
 		<h3>You have logged in {{ current_user.num_logins }} times.</h3>

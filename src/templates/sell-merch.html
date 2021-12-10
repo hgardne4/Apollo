@@ -2,8 +2,7 @@
 
 {% block content %}
 <body style="background-color: #edfc47;">
-    <h1 style="color:#993657; text-align: center; font-family: 'Courier New', monospace;"> Edit Your User Info
-    </h1>
+    <h1 style="color:#993657; text-align: center; font-family: 'Courier New', monospace;">Purchase Merchendise!</h1>
 
     {% with messages = get_flashed_messages() %}
 	  {% if messages %}
@@ -16,8 +15,8 @@
 	  {% endif %}
 	{% endwith %}
 
-
-    <table border = 1>
+    <br><br><br>
+    <table border = 1 style="margin-left: auto; margin-right: auto; text-align: center;">
         <thead>
            <td>Item Name</td>
            <td>Price</td>
@@ -34,21 +33,29 @@
         {% endfor %}
      </table>
 
+    <section class="login-content">
+        <div align="center">
+            <div class="login-box">
+                <form method="POST">
+                    <h3>Make Purchase</h3>
+                    <div class="login-box">
+                        <div class="field">
+                            {{ form.item_name.label }}
+                            {{ form.item_name(size=30) }}
+                        </div>
+                
+                        <div class="field">
+                            {{ form.quantity.label }}
+                            {{ form.quantity }}
+                        </div>
 
-    <form method="POST">
-        <fieldset class="form-field">
-            {{ form.item_name.label }}
-            {{ form.item_name(size=50) }}
-        </fieldset>
-
-        <fieldset class="form-field">
-            {{ form.quantity.label }}
-            {{ form.quantity }}
-        </fieldset>
-
-        {{ form.csrf_token }}
-        {{ form.submit() }}
-    </form>
+                        {{ form.csrf_token }}
+                        {{ form.submit() }}
+                    </div>
+                </form>
+            </div>      
+        </div>  
+    </section>
 
 </body>
 {% endblock %}

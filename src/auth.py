@@ -27,7 +27,7 @@ from datetime import datetime
 
 auth = Blueprint('auth', __name__)
 
-
+######## FORM CLASSES: ########
 class NewUserForm(FlaskForm):
   name = StringField('Name: ', validators=[DataRequired()])
   password = StringField('Password: ', validators=[DataRequired()])
@@ -56,40 +56,33 @@ class BlogForm(FlaskForm):
   post = StringField('Post: ', validators=[DataRequired()])
   submit = SubmitField('Submit')
 
-# WHEN THE USER SIGNS UP
+######## ROUTING FUNCTIONS: ########
 @auth.route('/signup/user', methods=['GET', 'POST'])
 def signup_user():
-	name = ' '
-	password = ''
-	email = ' '
-	form = NewUserForm(name='', password='', email='')
-    	
+	# initialize the user form
+	form = NewUserForm(name='', password='', email='')	
 	if form.validate_on_submit():
 		# if the email does not already exist, then create a new user 
 		user = User.query.filter_by(email=form.email.data).first()
+		# if the user exists, then output error
 		if user:
 			flash('Email already exists')
 			return redirect(url_for('auth.signup_user'))
-
+		# o/w create a new user and commit changes
 		new_user = User(name=form.name.data, email=form.email.data, password=generate_password_hash(form.password.data, method='sha256'), account_type="user", num_logins=0, num_posts=0)
 		db.session.add(new_user)
 		db.session.commit()
 		return redirect(url_for('auth.login'))
-
 	return render_template('signup.html', form=form, band=False)
 
-# WHEN THE BAND SIGNS UP
 @auth.route('/signup/band', methods=['GET', 'POST'])
 def signup_band():
-	name = ''
-	password = ''
-	email = ''
-	genre = ''
-	form = NewBandForm(name='', password='', email='', genre='')
-    	
+	# initialize the band form
+	form = NewBandForm(name='', password='', email='', genre='')  	
 	if form.validate_on_submit():
 		# if the email does not already exist, then create a new user 
 		band = User.query.filter_by(email=form.email.data).first()
+		# if the band exists, output error
 		if band:
 			flash('Email already exists')
 			return redirect(url_for('auth.signup_band'))
@@ -104,23 +97,19 @@ def signup_band():
 		db.session.add(new_band)
 		db.session.commit()
 		return redirect(url_for('auth.login'))
-
 	return render_template('signup.html', form=form, band=True)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-	# get the email, password, and name from the user input
-
-	password = ''
-	email = ''
+	# initialize the user form
 	form = UserLoginForm(password='', email='')
-
 	if form.validate_on_submit():
 		# get the user/band data from the database
 		user = User.query.filter_by(email=form.email.data).first()
 
-		# check if this is a user and the password matches, if so log them in
+		# check if this is a user and the password matches, if so, log them in
 		if user and check_password_hash(user.password, str(form.password.data)):
+			# update how many times they've logged in
 			user.num_logins += 1
 			db.session.commit()
 			login_user(user)
@@ -130,5 +119,4 @@ def login():
 			return redirect(url_for('auth.login'))
     	# if successfully logged in, then redirect to profile page
 		return redirect(url_for('main.profile', uid=int(user.id), band=0))
-
 	return render_template('login.html', form=form)

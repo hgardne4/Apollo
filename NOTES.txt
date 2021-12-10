@@ -1,10 +1,6 @@
-CHANGES TO DESIGN:
-- There is now 1 signup method:
-	- user enters account type and then it adds that into the USER TABLE
-- Began object orientation for band, album, merch, etc. 
-- Started band, merchendise table
-
 NEED TO DO:
 GEORGE:
-- fix profile.html, signup.html, login.html, signup-login-redirect.html
-EDITED 12/9 at 15:00 
+- fix styling -> on aesthetic duty
+
+
+EDITED 12/10 at 03:00 AM 
