@@ -5,10 +5,13 @@
 <section>
 	{% if current_user.is_authenticated %}
 		<!-- GET THE EMAIL THROUGH THE CURRENT_USER CALL -->
-		<h1 class="title"> Welcome {{ current_user.email }} to your profile!</h1>
+		<h1 class="title"> Welcome {{ disp_band.email }} to your profile!</h1>
 
 		<a href="{{ url_for('main.buy_merch', uid=bid) }}">
 			<button>BUY MERCH</button>
+		</a>
+		<a href="{{ url_for('main.display_discog', bid=bid) }}">
+			<button>SEE DISCOGPRAHY</button>
 		</a>
 		<br><br><br><br><br><br>
 		<h2>Navigate the website in the tabs above.</h2>

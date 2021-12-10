@@ -60,6 +60,18 @@ class Merchendise(db.Model):
     price = db.Column(db.Integer)
     quantity = db.Column(db.Integer)
 
+class Discography(db.Model):
+    __tablename__ = 'discography'
+
+    # initialize the primary key in the SQL Database to be the id
+    id = db.Column(db.Integer, primary_key=True)
+    #band_id = db.Column(db.Integer, ForeignKey='band.id')
+    #band = relationship('Parent', back_populates='children')
+    # MERCHENDISE CONTENTS STORED:
+    user_id = db.Column(db.Integer)
+    album = db.Column(db.String(100))
+    song = db.Column(db.String(100))
+
 # BLOG TABLE
 class Blog(db.Model):
     __tablename__ = 'blog'

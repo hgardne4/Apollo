@@ -8,6 +8,9 @@
 		<h1 class="title"> Welcome {{ current_user.email }} to your profile!</h1>
 
 		{% if current_user.account_type == "band" %}
+			<a href="{{ url_for('main.add_discog', uid=current_user.id) }}">
+				<button>ADD DISCOGRAPHY</button>
+			</a>
 			<a href="{{ url_for('main.add_merch', uid=current_user.id) }}">
 				<button>ADD MERCH</button>
 			</a>

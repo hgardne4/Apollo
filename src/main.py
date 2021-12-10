@@ -12,7 +12,7 @@ https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-yo
 
 # basic imports needed for flask, initializing the SQL DB, etc
 from flask import Blueprint, render_template, redirect, url_for, request, flash
-from .models import User, Band, Merchendise 
+from .models import User, Band, Merchendise, Discography
 from . import db
 
 from flask_wtf import FlaskForm
@@ -31,7 +31,8 @@ def profile(uid, band):
 
 @main.route('/profile/<int:bid>')
 def band_public(bid):
-    return render_template('band-public.html', bid=bid)
+    band_to_disp = User.query.filter_by(account_type="band", id=bid).first()
+    return render_template('band-public.html', bid=bid, disp_band=band_to_disp)
 
 @main.route('/genres')
 def genres():
@@ -67,19 +68,21 @@ def buy_merch(uid):
 
     item_name = ' '
     quantity = ' '
-    form = AddMerchForm(item_name='', quantity='')
+    form = SellMerchForm(item_name='', quantity='')
 
     if form.validate_on_submit():
         merch = Merchendise.query.filter_by(user_id=uid, item_name=form.item_name.data).first()
 
         if merch:
-            merch.quantity -= form.quantity.data
-            #CHECK FOR LESS THAN 0
+            
+            merch.quantity = merch.quantity - int(form.quantity.data)
             db.session.commit()
+            all_merch = Merchendise.query.filter_by(user_id=uid)
+            #CHECK FOR LESS THAN 0
+            return render_template('sell-merch.html',form=form, rows=all_merch, bid=uid)
         else:
             # MERCH DOES NOT EXIST
             two = 2
-
     return render_template('sell-merch.html',form=form, rows=all_merch, bid=uid)
 
 class AddMerchForm(FlaskForm):
@@ -111,3 +114,45 @@ def add_merch(uid):
 
 
     return render_template('add-merch.html', form=form) 
+
+class AddMerchForm(FlaskForm):
+  item_name = StringField('Item Name: ', validators=[DataRequired()])
+  price = StringField('Price: ', validators=[DataRequired()])
+  quantity = StringField('Quantity: ', validators=[DataRequired()])
+  submit = SubmitField('Submit')
+
+@main.route('/show_discog/<int:bid>', methods=[ 'GET' , 'POST' ])
+def display_discog(bid):
+    all_discography = Discography.query.filter_by(user_id=bid)
+    return render_template('display-discography.html',rows=all_discography, bid=bid)
+
+class AddDiscogForm(FlaskForm):
+  album = StringField('Album: ', validators=[DataRequired()])
+  song = StringField('Song: ', validators=[DataRequired()])
+  submit = SubmitField('Submit')
+
+@main.route('/add-discog/<int:uid>', methods=[ 'GET' , 'POST' ])
+def add_discog(uid):
+    album = ' '
+    song = ' '
+    form = AddDiscogForm(album='', song='')
+
+    if form.validate_on_submit():
+        discog = Discography.query.filter_by(user_id=uid, album=form.album.data, song=form.song.data).first()
+
+        if discog:
+            #Error repeat song
+            one = 1
+        else:
+            new_discog = Discography(user_id=uid, album=form.album.data, song=form.song.data)
+            db.session.add(new_discog)
+            db.session.commit()
+        
+        return redirect(url_for('main.profile', uid=uid, band=1))
+
+
+    return render_template('add-discography.html', form=form) 
+
+
+
+
