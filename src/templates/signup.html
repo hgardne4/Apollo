@@ -5,34 +5,53 @@
         <div class="column is-4 is-offset-4">
             <h3 class="title">Sign Up</h3>
             <div class="box">
-                <!-- <form method="POST" action="/signup"> -->
                 <form method="POST">
-                    <fieldset class="form-field">
-                        {{ form.name.label }}
-                        {{ form.name(size=50) }}
-                    </fieldset>
+                    <div class="login-box">
+                        <div class="field"> 
+                            {{ form.name.label }}
+                            {{ form.name(size=30) }}
+                        </div>
+                            
+                        <div class="field">
+                            {{ form.email.label }}
+                            {{ form.email(size=30) }}
+                        </div>
+                        
+                        <div class="field">
+                            {{ form.password.label }}
+                            {{ form.password(size=30) }}
+                        </div>
 
-                    <fieldset class="form-field">
-                        {{ form.email.label }}
-                        {{ form.email(size=50) }}
-                    </fieldset>
-            
-                    <fieldset class="form-field">
-                        {{ form.password.label }}
-                        {{ form.password(size=50) }}
-                    </fieldset>
+                        {% if band %}
+                            <div class="field">
+                                {{ form.genre.label }}
+                                {{ form.genre(size=30) }}
+                            </div>
+                        {% endif %}
 
-                    {% if band %}
-                        <fieldset class="form-field">
-                            {{ form.genre.label }}
-                            {{ form.genre(size=50) }}
-                        </fieldset>
-                    {% endif %}
+                        {{ form.csrf_token }}
+                        {{ form.submit() }}
+                    </div>
 
-                    {{ form.csrf_token }}
-                    {{ form.submit() }}
+                   
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- DISPLAY WHEN THE EMAIL EXISTS -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <h3 style="color:red">{{ messages[0] }}, or <a href="{{ url_for('auth.login') }}">login</a>.</h3>
+        {% endif %}
+    {% endwith %}
+{% endblock %} 
 
-                    <!-- <div class="field">
+
+ <!-- PREVIOUS
+<form method="POST" action="/signup"> 
+
+ <div class="field">
                         <div class="control">
                             <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
                         </div>
@@ -58,16 +77,3 @@
                     <br><br>
 
                     <!-- <button class="button is-block is-info is-large is-fullwidth">Sign Up</button> -->
-                </form>
-            </div>
-        </div>
-    </section>
-    
-<!-- DISPLAY WHEN THE EMAIL EXISTS -->
-<!-- {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <h3 style="color:red">{{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.</h3>
-    {% endif %}
-{% endwith %}
-<form method="POST" action="/signup"> -->
-{% endblock %} 

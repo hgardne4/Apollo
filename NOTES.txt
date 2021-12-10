@@ -5,8 +5,6 @@ CHANGES TO DESIGN:
 - Started band, merchendise table
 
 NEED TO DO:
-- make profile, login, signup look prettier
-- ADD foreign keys to table to connect them
-- add/design more tables 
-
+GEORGE:
+- fix profile.html, signup.html, login.html, signup-login-redirect.html
 EDITED 12/9 at 15:00 

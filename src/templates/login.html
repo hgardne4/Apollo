@@ -17,87 +17,33 @@ This file is the user login page for the Apollo Music Platform, it handles the r
 		<div class="row">
 			<div align="center">
 				<div class="login-box">
-					<!-- <form method="POST" action="/login"> -->
+					<!-- DISPLAY WHEN THE ACCOUNT DOESN'T EXIST -->
+					{% with messages = get_flashed_messages() %}
+					    {% if messages %}
+					        <h3 style="color:red">{{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.</h3>
+					    {% endif %}
+					{% endwith %}			
+							
 					<form method="POST">
 						<h3>User Login</h3>
-
-							<fieldset class="form-field">
+						<div class="login-box">
+							<div class="field">
 								{{ form.email.label }}
 								{{ form.email(size=50) }}
-							</fieldset>
+							</div>
 					
-							<fieldset class="form-field">
+							<div class="field">
 								{{ form.password.label }}
 								{{ form.password(size=50) }}
-							</fieldset>
+							</div>
 							{{ form.csrf_token }}
 							{{ form.submit() }}
-
-						<!--<form class="login-form">
-							<h3>
-								<input type="email" name="email" placeholder="Email">
-								<br>
-								<input type="password" name="password" placeholder="Password">
-								<br>
-								<br>
-								<button type="submit" class="page-btn gold-btn">LOGIN</button>
-							</h3>
-						</form> -->
+						</div>
 					</form>
 				</div>		
 			</div>	
 		</div>
 		
-
-		<!-- BAND Login page content 
-
-		<div class="row">
-			<div class="login-right">
-				<div class="login-box">
-					<h3>Band Login</h3>
-					<form class="login-form">
-						<h3>
-							<input type="email" placeholder="Email">
-							<input type="password" placeholder="Password">
-							<br>
-							<button type="submit" class="page-btn gold-btn">LOGIN</button>
-						</h3>
-						
-						
-					</form>
-				</div>	
-			</div>		
-		</div>
-		
-		
-		<div class="row">
-			
-				<div class="login-box">
-					<h3>Create an Account</h3>
-					<form class="login-form">
-						<h3>
-							<input type="email" placeholder="Email">
-							<input type="password" placeholder="Password">
-							<input type="password" placeholder="Confirm Password">
-							<br>
-							<button type="submit" class="page-btn gold-btn">LOGIN</button>
-						</h3>
-						
-						
-					</form>
-				</div>		
-
-		</div>
-		-->
 	</section>
 
-<!-- DISPLAY WHEN THE ACCOUNT DOESN'T EXIST -->
-
-
 {% endblock %}
-
-<!-- {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <h3 style="color:red">{{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.</h3>
-    {% endif %}
-{% endwith %} -->

@@ -30,10 +30,10 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(100))
     account_type = db.Column(db.String(100))
     num_logins = db.Column(db.Integer)
-
+    num_posts = db.Column(db.Integer)
 
 # BAND TABLE
-class Band(UserMixin, db.Model):
+class Band(db.Model):
     __tablename__ = 'band'
 
     # initialize the primary key in the SQL Database to be the id
@@ -58,3 +58,16 @@ class Merchendise(db.Model):
     item_name = db.Column(db.String(100))
     price = db.Column(db.Integer)
     quantity = db.Column(db.Integer)
+
+# BLOG TABLE
+class Blog(db.Model):
+    __tablename__ = 'blog'
+
+    # initialize the primary key in the SQL Database to be the id
+    id = db.Column(db.Integer, primary_key=True)
+    
+    # BLOG CONTENTS STORED:
+    user_id = db.Column(db.Integer)
+    date = db.Column(db.String(100))
+    time = db.Column(db.String(100))
+    post = db.Column(db.String(300))

@@ -47,8 +47,6 @@ def create_app():
         if User.query.get(int(id)):
             return User.query.get(int(id))
 
-    
-
     # APPEND ALL THE TABLES WITH THE CREATE_ALL() FUNCTION:
     # NOTE: need to wrap in the app_context() and commit changes
     with app.app_context():
