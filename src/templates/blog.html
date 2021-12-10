@@ -18,47 +18,33 @@ This file is the blog page for the Apollo Music Platform, it handles the redirec
 	<section class="blog-content">
 		<div class="row">
 			<div class="blog-left">
-				<img src="{{ url_for('static', filename='images/blog.jpeg') }}">
-				<h2> Blog</h2>
-				<p> Some blog stuff.</p>
-				<br>
-				<p> More blog stuff.</p>
-				
-			<div class="comment-box">
-				<h3>Post a comment:</h3>
-				<form class="comment-form", method="POST">
-                    <div class="field">
-                        {{ form.email.label }}
-                        {{ form.email(size=30) }}
-                    </div>
+				<div class="comment-box">
+					<h3 style='text-align: center;'>Make a post:</h3>
+					<form class="comment-form", method="POST">
+
+	                    <div class="field">
+	                        {{ form.email.label }}
+	                        {{ form.email(size=30) }}
+	                    </div>
+
 	                    <div class="field">
 	                        {{ form.post.label }}
 	                        {{ form.post(size=30) }}
 	                    </div>
-					{{ form.csrf_token }}
-					{{ form.submit() }}					
-				</form>
+
+						{{ form.csrf_token }}
+						{{ form.submit() }}	
+
+					</form>
+				</div>
 			</div>
-				
-				
-			</div>
+
 			<div class="blog-right">
-				<h3>Blog Post Categories</h3>
+				<br><br>
+				<h3>Blog Statistics</h3>
 				<div>
-					<span>Song Appreciation </span>
-					<span>14 </span>
-				</div>
-				<div>
-					<span>Band Appreciation </span>
-					<span>12 </span>
-				</div>
-				<div>
-					<span>Comment </span>
-					<span>28 </span>
-				</div>
-				<div>
-					<span>Questions </span>
-					<span>21 </span>
+					<span>How many times you've posted: </span>
+					<span>{{ current_user.num_posts }}</span>
 				</div>
 			</div>
 		</div>

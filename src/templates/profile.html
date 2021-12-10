@@ -5,7 +5,7 @@
 <section>
 	{% if current_user.is_authenticated %}
 		<!-- GET THE EMAIL THROUGH THE CURRENT_USER CALL -->
-		<h1 class="title"> Welcome {{ current_user.email }} to your profile!</h1>
+		<h1 class="title" style="text-align: center"> Welcome {{ current_user.name }} to your profile!</h1>
 
 		{% if current_user.account_type == "band" %}
 			<a href="{{ url_for('main.add_discog', uid=current_user.id) }}">
@@ -15,9 +15,11 @@
 				<button>ADD MERCH</button>
 			</a>
 		{% endif %}
+		<h3>You have made {{ current_user.num_posts }} posts.</h3>
+		<h3>You have logged in {{ current_user.num_logins }} times.</h3>
 		<br><br><br><br><br><br>
-		<h2>Navigate the website in the tabs above.</h2>
 		<h3>Thank you for supporting the Apollo Music Platform!</h3>
+		<h3>Navigate the website in the tabs above.</h3>
 	{% endif %} 
 </section>
 {% endblock %}
