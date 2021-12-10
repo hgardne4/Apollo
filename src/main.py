@@ -50,6 +50,10 @@ class AddBlogForm(FlaskForm):
 def index():
     return render_template('apollo.html')
 
+@main.route('/profile')
+def reg_profile():
+    return render_template('profile.html')
+
 @main.route('/profile/<int:uid><int:band>')
 def profile(uid, band):
     return render_template('profile.html')
@@ -104,7 +108,11 @@ def blog():
             user.num_posts += 1
             db.session.commit()
             return redirect(url_for('main.blog'))
-    return render_template('blog.html', form=form)
+    # make sure to pass in db.session values used for the blog statistics
+    return render_template('blog.html', form=form, num_posts=db.session.query(Blog).count(), 
+        unique_users=db.session.query(Blog).distinct(Blog.user_id).group_by(Blog.user_id).count(),
+        last_date_entry=str(db.session.query(Blog.date).order_by(Blog.user_id.desc()).first())[2:12],
+        last_time_entry=str(db.session.query(Blog.time).order_by(Blog.user_id.desc()).first())[2:10])
 
 # function that "purchases" merch for a user
 @main.route('/buy-merch/<int:uid>', methods=['GET','POST'])

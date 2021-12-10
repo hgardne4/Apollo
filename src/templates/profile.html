@@ -24,7 +24,11 @@
 		{% endif %}
 		<h3>You have made {{ current_user.num_posts }} posts.</h3>
 		<h3>You have logged in {{ current_user.num_logins }} times.</h3>
-		<br><br><br><br><br><br>
+		<br><br><br>
+		{% if current_user.num_posts > 0 %}
+
+		{% endif%}
+		<br><br><br>
 		<h3>Thank you for supporting the Apollo Music Platform!</h3>
 		<h3>Navigate the website in the tabs above.</h3>
 	{% endif %} 

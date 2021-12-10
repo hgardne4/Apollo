@@ -26,7 +26,13 @@ This file is the home page for the Apollo Music Platform, it handles the redirec
 		</div>
 			<div class="nav-links" id="navLinks">
 			<i class="fa fa-times" onclick="hideMenu()"></i>
-
+			{% if current_user.is_authenticated %}
+                <p>Current user: {{current_user.name }}</p> 
+                <ul>   
+                	<li><a href="{{ url_for('main.reg_profile') }}">Profile</a></li> 
+                	<li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                </ul>
+            {% endif %}
                 <ul>
                     <li><a href="{{ url_for('main.index') }}">HOME</a></li>
                     <li><a href="{{ url_for('main.bands') }}">BANDS</a></li>

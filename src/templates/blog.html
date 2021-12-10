@@ -43,9 +43,27 @@ This file is the blog page for the Apollo Music Platform, it handles the redirec
 				<br><br>
 				<h3>Blog Statistics</h3>
 				<div>
+					<span>Total posts: </span>
+					<span>{{ num_posts }}</span>
+				</div>
+				<div>
+					<span>How many unique users have posted: </span>
+					<span>{{ unique_users }}</span>
+				</div>
+				<div>
+					<span>Last post date: </span>
+					<span>{{ last_date_entry }}</span>
+				</div>
+				<div>
+					<span>Last post time: </span>
+					<span>{{ last_time_entry }}</span>
+				</div>
+				<div>
 					<span>How many times you've posted: </span>
 					<span>{{ current_user.num_posts }}</span>
 				</div>
+
+				
 			</div>
 		</div>
 		
