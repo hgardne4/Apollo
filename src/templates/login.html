@@ -26,19 +26,22 @@ This file is the user login page for the Apollo Music Platform, it handles the r
 					{% endwith %}			
 							
 					<form method="POST">
-						<h3>User Login</h3>
-						<div class="login-box">
+						<h3>Login</h3>
+						<div class="login-content">
 							<div class="field">
 								{{ form.email.label }}
-								{{ form.email(size=50) }}
+								{{ form.email(size=30) }}
 							</div>
 					
 							<div class="field">
 								{{ form.password.label }}
-								{{ form.password(size=50) }}
+								{{ form.password(size=30) }}
 							</div>
+							<div
+							class="page-btn gold-btn">
 							{{ form.csrf_token }}
 							{{ form.submit() }}
+							</div>
 						</div>
 					</form>
 				</div>		

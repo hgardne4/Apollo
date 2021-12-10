@@ -76,9 +76,17 @@ def band_public(bid):
 def genres():
     return render_template('genres.html')
 
-@main.route('/popular-songs')
+@main.route('/popular-songs', methods=['GET','POST'])
 def popular():
-    return render_template('popular-songs.html')
+    if request.method == 'POST':
+        if request.form['like']:
+            split = request.form['like'].split(' ')
+            album = split[0]
+            song = split[1]
+            discog = Discography.query.filter_by(album=album, song=song).first()
+            discog.likes +=1
+            db.session.commit()
+    return render_template('popular-songs.html', top10_songs=db.session.query(User, Discography).filter(User.id == Discography.user_id).order_by(Discography.likes.desc()).limit(10))
 
 @main.route('/bands')
 def bands():
@@ -134,10 +142,15 @@ def buy_merch(uid):
         # if that item exits, continue
         if merch:
             # update the quantity (as they purchased) and commit changes
+            total_item = merch.quantity
             merch.quantity = merch.quantity - int(form.quantity.data)
-            ######################################
+            if merch.quantity < 0:
+                merch.quantity = 0
             db.session.commit()
+            flash("You ordered more than we have in stock. Ordered max amount of " + str(total_item) + " isntead.")
             return render_template('sell-merch.html', form=form, rows=all_merch, bid=uid)
+        else:
+            flash("That item doesn't exist!")
     return render_template('sell-merch.html',form=form, rows=all_merch, bid=uid)
 
 # function to add merch to the merchendise table (for a band)
@@ -152,7 +165,7 @@ def add_merch(uid):
         if merch:
             # update this items 
             merch.price = form.price.data
-            merch.quantity += form.quantity.data
+            merch.quantity += int(form.quantity.data)
             db.session.commit()
         # o/w create a new merch item and commit changes
         else:
@@ -166,6 +179,16 @@ def add_merch(uid):
 @main.route('/show_discog/<int:bid>', methods=['GET','POST'])
 def display_discog(bid):
     # store all the discography elements for the given user id (band)
+    if request.method == 'POST':
+        print("here1")
+        if request.form['like']:
+            print("here 2")
+            split = request.form['like'].split(' ')
+            album = split[0]
+            song = split[1]
+            discog = Discography.query.filter_by(user_id=bid, album=album, song=song).first()
+            discog.likes +=1
+            db.session.commit()
     all_discography = Discography.query.filter_by(user_id=bid)
     return render_template('display-discography.html',rows=all_discography, bid=bid)
 
@@ -178,10 +201,13 @@ def add_discog(uid):
         # get the input elements used to create a new element
         discog = Discography.query.filter_by(user_id=uid, album=form.album.data, song=form.song.data).first()
         # add only if the element doesn't exist
-        if not discog:
+        if discog:
+            #Error repeat song
+            flash("Song already exists!")
+        else:
             # create the new element and commit changes 
-            new_discog = Discography(user_id=uid, album=form.album.data, song=form.song.data)
+            new_discog = Discography(user_id=uid, album=form.album.data, song=form.song.data, likes=0)
             db.session.add(new_discog)
             db.session.commit()
         return redirect(url_for('main.profile', uid=uid, band=1))
-    return render_template('add-discography.html', form=form) 
+    return render_template('add-discography.html', form=form, Discography=Discography) 

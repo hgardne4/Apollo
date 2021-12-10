@@ -15,19 +15,7 @@ This file is the bands page for the Apollo Music Platform, it handles the redire
 	<!-- Band page content -->
 
 	
-	<table border=1 style="margin-left: auto; margin-right: auto; text-align: center;">
-		<thead>
-		   <td>Name</td>
-		   <td>Genre</td>
-		</thead>
-		
-		{% for band in all_bands %}
-		   <tr>
-			  <td><a href="{{ url_for('main.band_public', bid=band['id']) }}">{{ band["name"] }}</a></td>
-			  <td>{{ BandQ.query.filter_by(user_id=band["id"]).first()["genre"]}}</td>
-		   </tr>
-		{% endfor %}
-	 </table>
+	
 
 
 	<section class="band">
@@ -53,4 +41,19 @@ This file is the bands page for the Apollo Music Platform, it handles the redire
 		
 	</section>
 
+
+	<h2>List of all bands:</h2>
+	<table border=1 style="margin-left: auto; margin-right: auto; text-align: center;">
+		<thead>
+		   <td>Name</td>
+		   <td>Genre</td>
+		</thead>
+		
+		{% for band in all_bands %}
+		   <tr>
+			  <td><a href="{{ url_for('main.band_public', bid=band['id']) }}">{{ band["name"] }}</a></td>
+			  <td>{{ BandQ.query.filter_by(user_id=band["id"]).first()["genre"]}}</td>
+		   </tr>
+		{% endfor %}
+	 </table>
 {% endblock %}

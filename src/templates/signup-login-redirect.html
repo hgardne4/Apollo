@@ -10,7 +10,7 @@ This file is the user login page for the Apollo Music Platform, it handles the r
 {% extends "header.html" %}
 	{% block title %} Apollo Login/Signup {% endblock %}
 
-{% block content %}	
+	{% block content %}	
 	
 	<!-- USER Login page content -->
 
@@ -19,15 +19,21 @@ This file is the user login page for the Apollo Music Platform, it handles the r
 			<div align="center">
 				<div class="login-box">
 					<!-- <form method="POST" action="/login"> -->
-						<a href="{{ url_for('auth.signup_user') }}">
-							<button>USER SIGNUP</button>
+						<a href="{{ url_for('auth.signup_user') }}"
+class="page-btn gold-btn"
+style="margin:50px;">
+							USER SIGNUP
 						</a>
 						</a>
-						<a href="{{ url_for('auth.signup_band') }}">
-							<button>BAND SIGNUP</button>
+						<a href="{{ url_for('auth.signup_band') }}"
+class="page-btn gold-btn"
+style="margin:50px;">
+							BAND SIGNUP
 						</a>
-						<a href="{{ url_for('auth.login') }}">
-							<button>LOGIN</button>
+						<a href="{{ url_for('auth.login') }}"
+class="page-btn gold-btn"
+style="margin:50px;">
+							LOGIN
 						</a>
 				</div>		
 			</div>	

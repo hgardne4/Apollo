@@ -66,6 +66,7 @@ class Discography(db.Model):
     user_id = db.Column(db.Integer)
     album = db.Column(db.String(100))
     song = db.Column(db.String(100))
+    likes = db.Column(db.Integer)
 
 # BLOG TABLE
 class Blog(db.Model):

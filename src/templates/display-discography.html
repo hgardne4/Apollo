@@ -16,10 +16,14 @@
 	{% endwith %}
 
    <br><br><br>
+   <p>Click like to add one like to the song!</p>
    <table border=1 style="margin-left: auto; margin-right: auto; text-align: center;">
        <thead>
           <td>Album</td>
           <td>Song</td>
+          <td># of Likes</td>
+          <td>Like</td>
+
 
        </thead>
        
@@ -27,6 +31,11 @@
           <tr>
              <td>{{row["album"]}}</td>
              <td>{{row["song"]}}</td>
+             <td>{{row["likes"]}}</td>
+             <td>
+              <form method ="post">
+                <button type="submit" name="like" value="{{ row['album'] + ' ' + row['song']}}"> LIKE </button>
+              </form>  
           </tr>
        {% endfor %}
    </table>

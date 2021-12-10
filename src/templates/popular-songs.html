@@ -15,6 +15,31 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 	<!-- Band page content -->
 
 	<section class="band">
+		<h2>Top 10 Current Fan Favorite Songs:</h2>
+		
+
+		<table border=1 style="margin-left: auto; margin-right: auto; text-align: center;">
+			<thead>
+			   <td>Album</td>
+			   <td>Song</td>
+			   <td># of Likes</td>
+			   <td>Like</td>
+	 
+	 
+			</thead>
+			
+			{% for song in top10_songs %}
+			   <tr>
+				  <td>{{song[1]["album"]}}</td>
+				  <td>{{song[1]["song"]}}</td>
+				  <td>{{song[1]["likes"]}}</td>
+				  <td>
+				   <form method ="post">
+					 <button type="submit" name="like" value="{{ song[1]['album'] + ' ' + song[1]['song']}}"> LIKE </button>
+				   </form>  
+			   </tr>
+			{% endfor %}
+		</table>
 
 		<div class="row">
 			<div class="band-col">
