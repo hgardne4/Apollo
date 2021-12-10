@@ -14,7 +14,7 @@
 			<a href="{{ url_for('main.index') }}"><img src="{{ url_for('static', filename='images/logo.png') }}" width="100" heigth="40" ></a>
 			<div class="nav-links" id="navLinks">
 			<i class="fa fa-times" onclick="hideMenu()"></i>
-
+                <p>Current User: {{ current_user.name }} </p>
                 <ul>
                     
                     <li><a href="{{ url_for('main.index') }}">HOME</a></li>

@@ -55,6 +55,7 @@ class Merchendise(db.Model):
     #band_id = db.Column(db.Integer, ForeignKey='band.id')
     #band = relationship('Parent', back_populates='children')
     # MERCHENDISE CONTENTS STORED:
+    user_id = db.Column(db.Integer)
     item_name = db.Column(db.String(100))
     price = db.Column(db.Integer)
     quantity = db.Column(db.Integer)

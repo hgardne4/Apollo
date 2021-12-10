@@ -15,6 +15,19 @@ This file is the bands page for the Apollo Music Platform, it handles the redire
 	<!-- Band page content -->
 
 	<section class="band">
+		<table border = 1>
+			<thead>
+			   <td>Name</td>
+			   <td>Genre</td>
+			</thead>
+			
+			{% for band in all_bands %}
+			   <tr>
+				  <td><a href="{{ url_for('main.band_public', bid=band['id']) }}">{{ band["name"] }}</a></td>
+				  <td>{{ BandQ.query.filter_by(user_id=band["id"]).first()["genre"]}}</td>
+			   </tr>
+			{% endfor %}
+		 </table>
 
 		<div class="row">
 			<div class="band-col">

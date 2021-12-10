@@ -7,11 +7,9 @@
 		<!-- GET THE EMAIL THROUGH THE CURRENT_USER CALL -->
 		<h1 class="title"> Welcome {{ current_user.email }} to your profile!</h1>
 
-		{% if current_user.account_type == "band" %}
-			<a href="{{ url_for('main.add_merch', uid=current_user.id) }}">
-				<button>ADD MERCH</button>
-			</a>
-		{% endif %}
+		<a href="{{ url_for('main.buy_merch', uid=bid) }}">
+			<button>BUY MERCH</button>
+		</a>
 		<br><br><br><br><br><br>
 		<h2>Navigate the website in the tabs above.</h2>
 		<h3>Thank you for supporting the Apollo Music Platform!</h3>
