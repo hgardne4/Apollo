@@ -7,27 +7,26 @@
 		<!-- GET THE EMAIL THROUGH THE CURRENT_USER CALL -->
 		<h1 class="title" style="text-align: center"> Welcome to {{ band_user.name }}'s Profile!</h1>
 
-		{% if current_user.account_type == "band" %}
-			<br><br>
-			<h2 style="text-align: center">Genre: {{ band.genre }}</h2>
-			<br><br><br>
-				<div style="display: flex; justify-content: center; align-content: center;">			
+		<br><br>
+		<h2 style="text-align: center">Genre: {{ band.genre }}</h2>
+		<br><br><br>
+			<div style="display: flex; justify-content: center; align-content: center;">			
 
-	                    <a href="{{ url_for('main.buy_merch', uid=bid) }}">
-							<button>BUY MERCH</button>
-						</a>
-						<a href="{{ url_for('main.display_discog', bid=bid) }}">
-							<button>SEE DISCOGPRAHY</button>
-						</a>						
-				</div>
-			<br><br><br>
-		{% endif %}
+                    <a href="{{ url_for('main.buy_merch', uid=bid) }}">
+						<button>BUY MERCH</button>
+					</a>
+					<a href="{{ url_for('main.display_discog', bid=bid) }}">
+						<button>SEE DISCOGPRAHY</button>
+					</a>						
+			</div>
+		<br><br><br>
+
 		<h3>Numer of {{ band_user.name }} posts/announcements: {{ band_user.num_posts }}</h3>
 		<h3>This page has been viewed {{ band.page_views }} times.</h3>
 		<br><br><br>
 
 		{% if band_user.num_posts > 0 %}
-			<h3>{{ band_user.name }}'s Posts:</h3>
+			<h3>{{ band_user.name }}'s osts:</h3>
 			<br>
 			{% for post in blog.query.filter_by(user_id=band_user.id) %}
 				<h3>On {{ post.date }} at {{ post.time }} {{ band_user.name }} said:</h3>

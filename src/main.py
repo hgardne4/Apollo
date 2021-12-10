@@ -135,6 +135,7 @@ def buy_merch(uid):
         if merch:
             # update the quantity (as they purchased) and commit changes
             merch.quantity = merch.quantity - int(form.quantity.data)
+            ######################################
             db.session.commit()
             return render_template('sell-merch.html', form=form, rows=all_merch, bid=uid)
     return render_template('sell-merch.html',form=form, rows=all_merch, bid=uid)
