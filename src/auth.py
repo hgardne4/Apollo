@@ -149,7 +149,7 @@ def login_user():
 		if user and check_password_hash(user.password, str(form.password.data)):
 			user.num_logins += 1
 			db.session.commit()
-			#login_user(user)
+			login_user(user)
 		# o/w output error and redirect to login page
 		else:
 			flash('Unrecognized account details, please check your login details and try again.')
