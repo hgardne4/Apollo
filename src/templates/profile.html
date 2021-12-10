@@ -26,7 +26,13 @@
 		<h3>You have logged in {{ current_user.num_logins }} times.</h3>
 		<br><br><br>
 		{% if current_user.num_posts > 0 %}
-
+			<h3>Your Posts:</h3>
+			<br>
+			{% for post in blog.query.filter_by(user_id=current_user.id) %}
+				<h3>On {{ post.date }} at {{ post.time }} you said:</h3>
+				<h3>{{ post.post }}</h3>
+				<br>
+			{% endfor %}
 		{% endif%}
 		<br><br><br>
 		<h3>Thank you for supporting the Apollo Music Platform!</h3>

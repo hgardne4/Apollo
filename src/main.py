@@ -52,7 +52,7 @@ def index():
 
 @main.route('/profile')
 def reg_profile():
-    return render_template('profile.html')
+    return render_template('profile.html', blog=Blog)
 
 @main.route('/profile/<int:uid><int:band>')
 def profile(uid, band):
@@ -66,7 +66,7 @@ def band_public(bid):
     # update the number of times the page has been viewed and commit changes
     band.page_views += 1
     db.session.commit()
-    return render_template('band-public.html', bid=bid, band=band, band_user=band_user)
+    return render_template('band-public.html', bid=bid, band=band, band_user=band_user, blog=Blog)
 
 @main.route('/genres')
 def genres():
