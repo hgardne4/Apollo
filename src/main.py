@@ -60,7 +60,7 @@ def reg_profile():
 
 @main.route('/profile/<int:uid><int:band>')
 def profile(uid, band):
-    return render_template('profile.html')
+    return render_template('profile.html', blog=Blog)
 
 @main.route('/profile/<int:bid>')
 def band_public(bid):
