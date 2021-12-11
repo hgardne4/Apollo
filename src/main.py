@@ -105,7 +105,6 @@ def blog():
     if form.validate_on_submit():
         # get the user for this email to add their id val to the blog table
         user = User.query.filter_by(email=form.email.data).first()
-        print(user.num_posts)
         # make sure there is a user associated with this account, if so make the post
         if user:
             # get the current date and time
@@ -119,6 +118,9 @@ def blog():
             # update the number of times this user has made a post
             user.num_posts += 1
             db.session.commit()
+            return redirect(url_for('main.blog'))
+        else:
+            flash("Please use a registered email!")
             return redirect(url_for('main.blog'))
     # make sure to pass in db.session values used for the blog statistics
     return render_template('blog.html', form=form, num_posts=db.session.query(Blog).count(), 
