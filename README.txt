@@ -27,7 +27,7 @@ Then we need to activate the virtual enviornment via:
 
 Before we continue, make sure to install flask (and corresponding elements of flask) in this folder, complete this with the following command:
 	
-    pip3 install flask flask-sqlalchemy flask-login
+    	pip3 install flask flask-sqlalchemy flask-login
 
 Lastly, we need to initialize flask to our python file through the following command:
 
