@@ -9,7 +9,7 @@ This file is the bands page for the Apollo Music Platform, it handles the redire
 
 {% extends "header.html" %}
 
-	{% block title %} Bands {% endblock %}
+	{% block title %} Apollo Bands {% endblock %}
 
 	{% block content %}
 	<!-- Band page content -->
@@ -26,7 +26,7 @@ This file is the bands page for the Apollo Music Platform, it handles the redire
 					<h1>{{ band[0]['name'] }}</h1>
 					<p>Here is the page for the popular band, {{ band[0]['name'] }} </p>
 					<p>They have {{ band[1]['page_views'] }} views!</p>
-					<a href="{{ url_for('main.band_public', bid=band.Band.id) }}" class="page-btn gold-btn">Explore their music</a>
+					<a href="{{ url_for('main.band_public', bid=band[0]['id']) }}" class="page-btn gold-btn">Explore their music</a>
 				</div>
 				<div class="band-col">
 					{% if band[0]['name'] in image_files %}

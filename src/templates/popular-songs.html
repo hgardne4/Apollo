@@ -9,14 +9,13 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 
 
 {% extends "header.html" %}
+	{% block title %} Apollo Popular Songs {% endblock %}
 
 	{% block content %}
 
 	<!-- Band page content -->
 
-	<section class="band">
-		<h2>Top 10 Current Fan Favorite Songs:</h2>
-		
+	<h2 style="margin-left: auto; margin-right: auto; text-align: center;">Top 10 Current Fan Favorite Songs:</h2>
 
 		<table border=1 style="margin-left: auto; margin-right: auto; text-align: center;">
 			<thead>
@@ -35,17 +34,19 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 				  <td>{{song[1]["likes"]}}</td>
 				  <td>
 				   <form method ="post">
-					 <button type="submit" name="like" value="{{ song[1]['album'] + ' ' + song[1]['song']}}"> LIKE </button>
+					 <button type="submit" name="like" value="{{ song[1]['album'] + '*' + song[1]['song']}}"> LIKE </button>
 				   </form>  
 			   </tr>
 			{% endfor %}
 		</table>
 
+	<section class="band">
+		
+
 		<div class="row">
 			<div class="band-col">
 				<h1>The New Abnormal</h1>
 				<p>Here is the page for the popular album, The New Abnormal, by The Strokes. This is the sixth album from The Strokes, featuring heartwrenching tunes, such as The Adults Are Talking, At the Door, Why Are Sundays So Depressing, Selfless, and many more. If you love phsychedelic moody tunes that feel like a hangover, this is the album for you.</p>
-				<a href=""class="page-btn gold-btn">Explore the album</a>
 			</div>
 			<div class="band-col">
 				<img src="static/images/thenewabnormal.jpeg">
@@ -56,7 +57,6 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 			<div class="band-col">
 				<h1>Saccharine</h1>
 				<p>Here is the page for the popular album, Saccharine, by the band Pinkshift. Pinkshift describes themselves as "Baltimore shit-stirrers" and this album perfectly reflects that mantra. Featuring heavy hitting songs like Mars, I'm Gonna Tell My Therapist On You, and Rainwalk, this album is for anyone that loves that heavy punk sound.</p>
-				<a href=""class="page-btn gold-btn">Explore the Album</a>
 			</div>
 			<div class="band-col">
 				<img src="static/images/saccharine.jpeg">
@@ -67,7 +67,6 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 			<div class="band-col">
 				<h1>Mm..Food</h1>
 				<p>Here is the page for the popular album, Mm..Food, by MF DOOM. This album, which is an anagram for the rapper's name, is his fifth studio album. The album peaked the charts at number 17 on Billboard's independent albums chart, and is the home of the some of the rapper's most popular songs. The album features popular tracks such as Rapp Snitch Knishes, One Beer, Hoe Cakes, and many more. If you love tasty licks, catchy samples, and that old school hip hop sound, this is the album for you.</p>
-				<a href=""class="page-btn gold-btn">Explore the Album</a>
 			</div>
 			<div class="band-col">
 				<img src="static/images/mmfood.jpeg">
@@ -78,7 +77,6 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 			<div class="band-col">
 				<h1>Lonerism</h1>
 				<p>Here is the page for the popular album, Lonerism, by Tame Impala. This was the second album by the musical project that was written, produced, performed, and recorded by Kevin Parker. This album is a beautiful mix of hard hitting nostalgic rock tunes like Elephant, Apocalypse Dreams, Ender's Toi, and many more. If you are a fan of that classic phsychedelic rock tune, this is the album for you. </p>
-				<a href=""class="page-btn gold-btn">Explore the Album</a>
 			</div>
 			<div class="band-col">
 				<img src="static/images/lonerism.jpeg">
@@ -89,7 +87,6 @@ This file is the popular songs page for the Apollo Music Platform, it handles th
 			<div class="band-col">
 				<h1>Yak: A Collection Of Truck Songs</h1>
 				<p>Here is the page for the popular album, Yak: A Collection Of Truck Songs, by Angel Du$t. Maryland punk group, Angel Du$t, released this album as their fourth full-length album. Vocalist for the group, Justice Tripp was quoted describing the album by saying, "if one song to the next doesn't sound like it's coming from the same band, I'm okay with that." The band captures many different sounds in this album with songs like, Big Bite, Fear Some, All the Way Dumb, and many more. If you are looking for a musical experience that differs from one song to the next, while still capturing that iconic punk sound, this is the album for you.  </p>
-				<a href=""class="page-btn gold-btn">Explore the Album</a>
 			</div>
 			<div class="band-col">
 				<img src="static/images/yak.jpeg">

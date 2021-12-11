@@ -1,4 +1,5 @@
 {% extends "header.html" %}
+   {% block title %} Apollo Discography Page {% endblock %}
 
 {% block content %}
 <body style="background-color: #edfc47;">
@@ -16,7 +17,7 @@
 	{% endwith %}
 
    <br><br><br>
-   <p>Click like to add one like to the song!</p>
+   <p style="text-align: center;">Click like to add one like to the song!</p>
    <table border=1 style="margin-left: auto; margin-right: auto; text-align: center;">
        <thead>
           <td>Album</td>
@@ -34,7 +35,7 @@
              <td>{{row["likes"]}}</td>
              <td>
               <form method ="post">
-                <button type="submit" name="like" value="{{ row['album'] + ' ' + row['song']}}"> LIKE </button>
+                <button type="submit" name="like" value="{{ row['album'] + '*' + row['song']}}"> LIKE </button>
               </form>  
           </tr>
        {% endfor %}

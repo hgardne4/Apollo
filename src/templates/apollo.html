@@ -37,7 +37,6 @@ This file is the home page for the Apollo Music Platform, it handles the redirec
                     <li><a href="{{ url_for('main.index') }}">HOME</a></li>
                     <li><a href="{{ url_for('main.bands') }}">BANDS</a></li>
                     <li><a href="{{ url_for('main.popular') }}">POPULAR SONGS</a></li>
-                    <li><a href="{{ url_for('main.genres') }}">GENRES</a></li>
                     <li><a href="{{ url_for('main.blog') }}">BLOG</a></li>
                     <li><a href="{{ url_for('main.singup_login_redir') }}">SIGNUP/LOGIN</a></li>
                 </ul>
@@ -60,8 +59,8 @@ This file is the home page for the Apollo Music Platform, it handles the redirec
 				</a>
 			</div>
 			<div class="bands-col">
-				<a href="{{ url_for('main.genres') }}">
-					<h3>View Genres</h3>
+				<a href="{{ url_for('main.popular') }}">
+					<h3>View Popular Songs</h3>
 				</a>
 			</div>
 			<div class="bands-col">

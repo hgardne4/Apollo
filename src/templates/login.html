@@ -15,37 +15,35 @@ This file is the user login page for the Apollo Music Platform, it handles the r
 	<!-- USER Login page content -->
 
 	<section class="login-content">
-		<div class="row">
-			<div align="center">
-				<div class="login-box">
-					<!-- DISPLAY WHEN THE ACCOUNT DOESN'T EXIST -->
-					{% with messages = get_flashed_messages() %}
-					    {% if messages %}
-					        <h3 style="color:red">{{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.</h3>
-					    {% endif %}
-					{% endwith %}			
-							
-					<form method="POST">
-						<h3>Login</h3>
-						<div class="login-content">
-							<div class="field">
-								{{ form.email.label }}
-								{{ form.email(size=30) }}
-							</div>
-					
-							<div class="field">
-								{{ form.password.label }}
-								{{ form.password(size=30) }}
-							</div>
-							<div
-							class="page-btn gold-btn">
-							{{ form.csrf_token }}
-							{{ form.submit() }}
-							</div>
+		<div align="center">
+			<div class="login-box">
+				<!-- DISPLAY WHEN THE ACCOUNT DOESN'T EXIST -->
+				{% with messages = get_flashed_messages() %}
+				    {% if messages %}
+				        <h3 style="color:red">{{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.</h3>
+				    {% endif %}
+				{% endwith %}			
+						
+				<form method="POST">
+					<h3>Login</h3>
+					<div class="login-content">
+						<div class="field">
+							{{ form.email.label }}
+							{{ form.email(size=30) }}
 						</div>
-					</form>
-				</div>		
-			</div>	
+				
+						<div class="field">
+							{{ form.password.label }}
+							{{ form.password(size=30) }}
+						</div>
+						<div
+						class="page-btn gold-btn">
+						{{ form.csrf_token }}
+						{{ form.submit() }}
+						</div>
+					</div>
+				</form>
+			</div>		
 		</div>
 		
 	</section>

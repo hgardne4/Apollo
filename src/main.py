@@ -64,23 +64,20 @@ def profile(uid, band):
 
 @main.route('/profile/<int:bid>')
 def band_public(bid):
+    print(bid)
     # store the band in both user and band format used for output in the display
-    band_user = User.query.filter_by(account_type="band", id=bid).first()
+    band_user = User.query.filter_by(id=int(bid)).first()
     band = Band.query.filter_by(user_id=band_user.id).first()
     # update the number of times the page has been viewed and commit changes
     band.page_views += 1
     db.session.commit()
     return render_template('band-public.html', bid=bid, band=band, band_user=band_user, blog=Blog)
 
-@main.route('/genres')
-def genres():
-    return render_template('genres.html')
-
 @main.route('/popular-songs', methods=['GET','POST'])
 def popular():
     if request.method == 'POST':
         if request.form['like']:
-            split = request.form['like'].split(' ')
+            split = request.form['like'].split('*')
             album = split[0]
             song = split[1]
             discog = Discography.query.filter_by(album=album, song=song).first()
@@ -146,8 +143,8 @@ def buy_merch(uid):
             merch.quantity = merch.quantity - int(form.quantity.data)
             if merch.quantity < 0:
                 merch.quantity = 0
-            db.session.commit()
-            flash("You ordered more than we have in stock. Ordered max amount of " + str(total_item) + " isntead.")
+                db.session.commit()
+                flash("You ordered more than we have in stock. Ordered max amount of " + str(total_item) + " isntead.")
             return render_template('sell-merch.html', form=form, rows=all_merch, bid=uid)
         else:
             flash("That item doesn't exist!")
@@ -180,10 +177,8 @@ def add_merch(uid):
 def display_discog(bid):
     # store all the discography elements for the given user id (band)
     if request.method == 'POST':
-        print("here1")
         if request.form['like']:
-            print("here 2")
-            split = request.form['like'].split(' ')
+            split = request.form['like'].split('*')
             album = split[0]
             song = split[1]
             discog = Discography.query.filter_by(user_id=bid, album=album, song=song).first()

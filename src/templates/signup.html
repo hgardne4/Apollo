@@ -3,39 +3,44 @@
 
 {% block content %}
     <section>
-        <div class="column is-4 is-offset-4">
-            <h3 class="title">Sign Up</h3>
+        <div class="login-content">
             <div class="box">
-                <form method="POST">
+                <div align="center">
                     <div class="login-box">
-                        <div class="field"> 
-                            {{ form.name.label }}
-                            {{ form.name(size=30) }}
-                        </div>
-                            
-                        <div class="field">
-                            {{ form.email.label }}
-                            {{ form.email(size=30) }}
-                        </div>
-                        
-                        <div class="field">
-                            {{ form.password.label }}
-                            {{ form.password(size=30) }}
-                        </div>
+                        <form method="POST">
+                            <h3>Signup</h3>
+                            <div class="login-content">
+                                <div class="field"> 
+                                    {{ form.name.label }}
+                                    {{ form.name(size=30) }}
+                                </div>
+                                    
+                                <div class="field">
+                                    {{ form.email.label }}
+                                    {{ form.email(size=30) }}
+                                </div>
+                                
+                                <div class="field">
+                                    {{ form.password.label }}
+                                    {{ form.password(size=30) }}
+                                </div>
 
-                        {% if band %}
-                            <div class="field">
-                                {{ form.genre.label }}
-                                {{ form.genre(size=30) }}
+                                {% if band %}
+                                    <div class="field">
+                                        {{ form.genre.label }}
+                                        {{ form.genre(size=30) }}
+                                    </div>
+                                {% endif %}
+
+                                <div class="page-btn gold-btn">
+                                {{ form.csrf_token }}
+                                {{ form.submit() }}
+                                </div>
                             </div>
-                        {% endif %}
-
-                        {{ form.csrf_token }}
-                        {{ form.submit() }}
+                           
+                        </form>
                     </div>
-
-                   
-                </form>
+                </div>
             </div>
         </div>
     </section>

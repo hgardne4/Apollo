@@ -15,29 +15,15 @@ This file is the user login page for the Apollo Music Platform, it handles the r
 	<!-- USER Login page content -->
 
 	<section class="login-content">
-		<div class="row">
 			<div align="center">
 				<div class="login-box">
-					<!-- <form method="POST" action="/login"> -->
-						<a href="{{ url_for('auth.signup_user') }}"
-class="page-btn gold-btn"
-style="margin:50px;">
-							USER SIGNUP
-						</a>
-						</a>
-						<a href="{{ url_for('auth.signup_band') }}"
-class="page-btn gold-btn"
-style="margin:50px;">
-							BAND SIGNUP
-						</a>
-						<a href="{{ url_for('auth.login') }}"
-class="page-btn gold-btn"
-style="margin:50px;">
-							LOGIN
-						</a>
+						<a href="{{ url_for('auth.signup_user') }}" class="page-btn gold-btn" style="margin:50px;">USER SIGNUP</a>
+
+						<a href="{{ url_for('auth.signup_band') }}" class="page-btn gold-btn" style="margin:50px;">BAND SIGNUP</a>
+
+						<a href="{{ url_for('auth.login') }}" class="page-btn gold-btn" style="margin:50px;">LOGIN</a>
 				</div>		
 			</div>	
-		</div>
 	</section>
 
 {% endblock %}
